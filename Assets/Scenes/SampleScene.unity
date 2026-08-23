@@ -422,7 +422,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347567760}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -795,7 +795,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000i
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -810,6 +810,9 @@ MonoBehaviour:
   m_ShadowSoftnessFalloffIntensity: 0.5
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
   m_LocalBounds:
     m_Center: {x: -0.00024998188, y: -0.000100016594, z: 0}
     m_Extent: {x: 1.00045, y: 1.0009, z: 0}
@@ -1835,7 +1838,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.16, y: -4.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1853,6 +1856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpillEssenceOnHit
   essenceSpillObject: {fileID: 41742123251960678, guid: 96936867a9daa2746a7037392921d3ad, type: 3}
   health: {fileID: 1222384504}
+  moveOut: 0.25
 --- !u!1 &1574233059
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,6 +1891,9 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 3f9215ea0144899419cfbc0957140d3f, type: 2}
+  m_SceneObjectReference:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
 --- !u!4 &1574233061
 Transform:
   m_ObjectHideFlags: 0
@@ -2205,7 +2212,7 @@ Transform:
   m_GameObject: {fileID: 2867758114154935886}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.43, y: 1.89, z: 0}
+  m_LocalPosition: {x: 4.45, y: -4.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2241,7 +2248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.Light2D
   m_ComponentVersion: 4
-  m_LightType: 3
+  m_LightType: 1
   m_BlendStyleIndex: 0
   m_Light2DProvider:
     rid: -2
@@ -2249,10 +2256,10 @@ MonoBehaviour:
     rid: 181965242645872902
   m_FalloffIntensity: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2.68
+  m_Intensity: 0.3
   m_LightVolumeIntensity: 0
-  m_LightVolumeEnabled: 1
-  m_ApplyToSortingLayers: 00000000
+  m_LightVolumeEnabled: 0
+  m_ApplyToSortingLayers: 00000000i
   m_LightCookieSprite: {fileID: 21300000, guid: 119f93d0bcbf1e743bf5fcf237507d39, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -2261,15 +2268,18 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowsEnabled: 1
+  m_ShadowsEnabled: 0
   m_ShadowIntensity: 0.75
   m_ShadowSoftness: 0.3
   m_ShadowSoftnessFalloffIntensity: 0.5
-  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 1
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
   m_LocalBounds:
-    m_Center: {x: 0, y: -0.00000011920929, z: 0}
-    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+    m_Center: {x: 11.803, y: -0.4071498, z: 0}
+    m_Extent: {x: 33.4889, y: 14.51185, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -2277,13 +2287,13 @@ MonoBehaviour:
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffSize: 8.71
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
+  - {x: -5.6344547, y: -2.8752851, z: 0}
+  - {x: 19.622246, y: -6.2102814, z: 0}
+  - {x: 36.58514, y: -1.323452, z: 0}
+  - {x: -12.976247, y: 5.3945274, z: 0}
   references:
     version: 2
     RefIds:
@@ -2292,26 +2302,26 @@ MonoBehaviour:
     - rid: 181965242645872902
       type: {class: Light2DProviderSources, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
       data:
-        m_SelectedHashCode: 3
+        m_SelectedHashCode: 1
         m_SelectedSource:
-          rid: 181965242645872905
+          rid: 7032937599679332451
         m_Provider2DCache:
           rid: 181965242645872903
     - rid: 181965242645872903
       type: {class: 'Provider2DCache`1[[UnityEngine.Rendering.Universal.Light2DProvider, Unity.RenderPipelines.Universal.2D.Runtime]]', ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
       data:
         m_Cache: []
-    - rid: 181965242645872905
+    - rid: 7032937599679332451
       type: {class: Light2DSource_BuiltIn, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
       data:
         m_HashCode: 4
-        m_SourceType: 3
+        m_SourceType: 1
         m_MenuPriority: 0
         m_MenuName:
-          m_Text: Spot
-          m_Image: {fileID: 2800000, guid: 6eaa9958d83ec43499e946a21edba283, type: 3}
+          m_Text: Freeform
+          m_Image: {fileID: 2800000, guid: 68e5bb6e60bebc046b26d3c3100a523b, type: 3}
           m_Tooltip: 
-          m_TextWithWhitespace: "Spot\u200B"
+          m_TextWithWhitespace: "Freeform\u200B"
 --- !u!1001 &4974899629119265883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2360,10 +2370,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4092616746702010243, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
-      propertyPath: m_RenderPostProcessing
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4447383042969811909, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2375,6 +2381,22 @@ PrefabInstance:
     - target: {fileID: 5834591139961952059, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
       propertyPath: m_Name
       value: Player Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268903269260594675, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
+      propertyPath: slash
+      value: 
+      objectReference: {fileID: 2883940458832541757, guid: e6442b4bf16ecf5f6bb7473394eb6fbc, type: 3}
+    - target: {fileID: 8268903269260594675, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
+      propertyPath: attackHitBoxSize.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268903269260594675, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
+      propertyPath: attackHitBoxOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268903269260594675, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
+      propertyPath: CooldownBetweenEvreything
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

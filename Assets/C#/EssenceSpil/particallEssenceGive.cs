@@ -7,6 +7,7 @@ public class particallEssenceGive : MonoBehaviour
     Essence essence;
 
     [SerializeField] float amountOfEssence;
+    [HideInInspector] public float moveForawrd;
 
     List<ParticleSystem.Particle> enter = new List<ParticleSystem.Particle>();
 
@@ -17,8 +18,8 @@ public class particallEssenceGive : MonoBehaviour
         essence = player.transform.parent.GetComponentInChildren<Essence>();
         ps.trigger.AddCollider(player.GetComponent<Collider2D>());
         LookAt(player.transform);
+        transform.position += transform.up * moveForawrd;
         ps.Play();
-
     }
 
     //Snådd kod från https://discussions.unity.com/t/transform-lookat-target-in-2d/105326

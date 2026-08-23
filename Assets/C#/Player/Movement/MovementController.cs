@@ -13,8 +13,8 @@ public class MovementController : MonoBehaviour
     bool canJumpCooldown = true;
     bool HoldingJump = false;
     [SerializeField] float JumpForceOff;
-    [SerializeField] int HowManyJumpsTotal;
-    int HowManyJumps;
+    [SerializeField] int HowManyExtraJumpsTotal;
+    public int HowManyExtraJumps;
     public Vector2 moveDir { get; private set; }
     public Vector2 lastMoveDir = new Vector2(1, 0);
 
@@ -45,7 +45,7 @@ public class MovementController : MonoBehaviour
         Movement();
         Gravity();
         if(isGrounded){
-            HowManyJumps = HowManyJumpsTotal;
+            HowManyExtraJumps = HowManyExtraJumpsTotal;
         }
         return;
     }
@@ -108,11 +108,11 @@ public class MovementController : MonoBehaviour
     void OnJump(){
         HoldingJump = !HoldingJump;
 
-        if((isGrounded || (!isGrounded && HowManyJumps > 1)) && canJumpCooldown && HoldingJump){
+        if((isGrounded || (!isGrounded && HowManyExtraJumps >= 1)) && canJumpCooldown && HoldingJump){
             rb.linearVelocityY = 0;
             rb.AddForce(Vector2.up * JumpForceAmount, ForceMode2D.Impulse);
             canJumpCooldown = false;
-            HowManyJumps--;
+            HowManyExtraJumps--;
         }
         if(HoldingJump == false && rb.linearVelocityY >= 0 && !isGrounded){
             rb.linearVelocityY = JumpForceOff;

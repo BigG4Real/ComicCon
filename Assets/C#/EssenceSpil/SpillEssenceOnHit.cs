@@ -4,6 +4,7 @@ public class SpillEssenceOnHit : MonoBehaviour
 {
     [SerializeField] GameObject essenceSpillObject;
     [SerializeField] HealthScript health;
+    [SerializeField] float moveOut;
     float lastHealth;
     void Start()
     {
@@ -20,6 +21,8 @@ public class SpillEssenceOnHit : MonoBehaviour
 
     void SpillEssence()
     {
-        Instantiate(essenceSpillObject, transform.position, transform.rotation, transform);
+        GameObject obj = essenceSpillObject;
+        Instantiate(obj, transform.position, transform.rotation, transform);
+        obj.GetComponent<particallEssenceGive>().moveForawrd = moveOut;
     }
 }

@@ -40,7 +40,6 @@ public class lightFlicker : MonoBehaviour
         if (lights.intensity <= 0)
         {
             lights.intensity = 0;
-            Destroy(gameObject, 2);
         }
     }
 

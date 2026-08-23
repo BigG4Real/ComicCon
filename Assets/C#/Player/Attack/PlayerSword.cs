@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
 public class PlayerSword : MonoBehaviour
@@ -12,10 +14,12 @@ public class PlayerSword : MonoBehaviour
     [Header("Pogo")]
     [SerializeField] Vector2 attackHitBoxSizePogo;
     [SerializeField] Vector2 attackHitBoxOffsetPogo;
+    Vector2 pogoUpOrDown;
     bool pogo = false;
     [SerializeField] float pogoBoost;
     [Header("Player")]
     [SerializeField] MovementController player;
+    [SerializeField] Essence essence;
     [SerializeField] HealthScript attacker;
 
     [Header("Damge")]
@@ -32,29 +36,24 @@ public class PlayerSword : MonoBehaviour
     [SerializeField] float AttackCooldownTime;
     bool isAttackingFull;
     float attackTimer;
-    [Header("Essence")]
-    [SerializeField] Essence essenceManager;
+    [Header("Effect")]
+    [SerializeField] GameObject slash;
+
 
     [SerializeField] List<HealthScript> foundedHealths;
+    Vector2 hitboxPos;
+
     void AttackDmg()
     {
 
-        Vector2 hitboxPos;
         Collider2D[] colliders;
+        UpdateHitBox();
         if (pogo)
         {
-            hitboxPos = new Vector2(
-            transform.position.x + attackHitBoxOffsetPogo.x * transform.localScale.x,
-            transform.position.y + attackHitBoxOffsetPogo.y* transform.localScale.y
-            );
             colliders = Physics2D.OverlapBoxAll(hitboxPos, attackHitBoxSizePogo, 0);
         }
         else
         {
-            hitboxPos = new Vector2(
-            transform.position.x + (attackHitBoxOffset.x * player.lastMoveDir.x) * transform.localScale.x,
-            transform.position.y + attackHitBoxOffset.y * transform.localScale.y
-            );
             colliders = Physics2D.OverlapBoxAll(hitboxPos, attackHitBoxSize * transform.localScale, 0);
         }
         bool OnlyOnePogo = false;
@@ -74,8 +73,9 @@ public class PlayerSword : MonoBehaviour
             if (dupicate || health.IsSameTeam(attacker.team)) { continue; }
             health.Dmg(dmg, attacker.team);
             foundedHealths.Add(health);
-            essenceManager.GainEssence();
-            if (pogo && !OnlyOnePogo)
+            essence.GainEssence();
+            player.HowManyExtraJumps = 1;
+            if (pogo && !OnlyOnePogo && (float)Math.Round(pogoUpOrDown.y) < 0)
             {
                 OnlyOnePogo = false;
                 player.rb.linearVelocityY = 0;
@@ -84,6 +84,39 @@ public class PlayerSword : MonoBehaviour
 
             }
         }
+    }
+
+    void UpdateHitBox()
+    {
+        if (pogo)
+        {
+            hitboxPos = new Vector2(
+            transform.position.x + attackHitBoxOffsetPogo.x * transform.localScale.x,
+            transform.position.y + attackHitBoxOffsetPogo.y* transform.localScale.y * (float)Math.Round(pogoUpOrDown.y)
+            );
+        }
+        else
+        {
+            hitboxPos = new Vector2(
+            transform.position.x + (attackHitBoxOffset.x * player.lastMoveDir.x) * transform.localScale.x,
+            transform.position.y + attackHitBoxOffset.y * transform.localScale.y
+            );
+        }
+    }
+
+    void MakleSlashEffect()
+    {
+        UpdateHitBox();
+        GameObject slashEffect = Instantiate(slash, hitboxPos, transform.rotation);
+        LookAt(slashEffect, transform);
+        Destroy(slashEffect, 2.5f);
+    }
+
+    //Snådd kod från https://discussions.unity.com/t/transform-lookat-target-in-2d/105326
+    void LookAt(GameObject effect, Transform Target)
+    {
+        Vector2 direction = Target.position - effect.transform.position;
+        effect.transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
     }
 
     void Update()
@@ -113,6 +146,7 @@ public class PlayerSword : MonoBehaviour
 
     void AttackManyFull()
     {
+        MakleSlashEffect();
         smallAttackTimer = smallAttackCooldown;
         attackTimer = AttackCooldownTime;
         isAttacking = true;
@@ -124,15 +158,16 @@ public class PlayerSword : MonoBehaviour
     {
         isAttackingFull = false;
         if (isAttacking || smallAttackTimer > 0) { return; }
-
+        MakleSlashEffect();
         isAttacking = !isAttacking;
         smallAttackTimer = smallAttackCooldown;
 
         Invoke(nameof(RemoveAttack), hitboxAppearTime);
     }
 
-    void OnLookDown()
+    void OnUpOrDown(InputValue inputValue)
     {
+        pogoUpOrDown = inputValue.Get<Vector2>();
         pogo = !pogo;
     }
 
@@ -160,7 +195,7 @@ public class PlayerSword : MonoBehaviour
         {
             hitboxPos = new Vector2(
             transform.position.x + attackHitBoxOffsetPogo.x * transform.localScale.x,
-            transform.position.y + attackHitBoxOffsetPogo.y * transform.localScale.y
+            transform.position.y + attackHitBoxOffsetPogo.y * transform.localScale.y* (float)Math.Round(pogoUpOrDown.y)
             );
             if (isAttacking)
             {
