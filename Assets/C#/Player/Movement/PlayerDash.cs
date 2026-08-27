@@ -23,7 +23,6 @@ public class PlayerDash : MonoBehaviour
         {
             CanDash = false;
             rb.linearVelocityX = DashAmount * player.lastMoveDir.x;
-            rb.linearVelocityY = 0;
             Invoke(nameof(StopDash), Time);
             Invoke(nameof(ResetDash), ResetTime);
         }

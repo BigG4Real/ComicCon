@@ -73,9 +73,9 @@ public class hitboxManger : MonoBehaviour
         return colliders;
     }
 
-    public void DealDamgeToAllColliders(int index, float damgeAmount, Collider2D[] colliders, HealthScript.TeamSystem team, Action onHit = null)
+    public bool DealDamgeToAllColliders(int index, float damgeAmount, Collider2D[] colliders, HealthScript.TeamSystem team, Action onHit = null)
     {
-        if (!hitboxes[index].Activated) { return; }
+        if (!hitboxes[index].Activated) { return false; }
         bool didHitSomething = false;
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -95,7 +95,11 @@ public class hitboxManger : MonoBehaviour
             health.Dmg(damgeAmount, team);
             hitboxes[index].FoundedHealths.Add(health);
         }
-        if (onHit != null && didHitSomething) onHit();
+        if (onHit != null && didHitSomething) {
+            onHit();
+            return true;
+        }
+        return false;
     }
 #if UNITY_EDITOR
     void OnDrawGizmos()

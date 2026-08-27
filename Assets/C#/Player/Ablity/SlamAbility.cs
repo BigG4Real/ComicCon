@@ -8,8 +8,11 @@ public class SlamAbility : MonoBehaviour
     [Header("Player")]
     [SerializeField] MovementController player;
     [SerializeField] Essence essence;
+    [SerializeField] float upSpeed;
+    [SerializeField] float timeBeforeFall;
     [SerializeField] float downSpeed;
     bool DashDown;
+    bool PreformeSpecial;
 
     [Header("Slam Hitbox")]
     [SerializeField] Vector2 hitBoxSize;
@@ -42,35 +45,64 @@ public class SlamAbility : MonoBehaviour
         dmgScale += dmgScale * dmgScaleAmount * Time.deltaTime;
         dmgScale = (float)Math.Clamp(dmgScale, minDmgAmount, maxDmgAmount);
 
-        if (player.isGrounded)
+        player.rb.linearVelocityY = -downSpeed;
+        player.rb.AddForce(-transform.up * downSpeed, ForceMode2D.Force);
+
+        if (player.isGrounded || CanHit())
         {
+            hitboxManger.hitboxes[hitboxFullDmgID].Activated = false;
+            hitboxManger.RemoveAllHealth(hitboxFullDmgID);
+
+            PreformeSpecial = false;
             DashDown = false;
             dmgScale = (float)Math.Round(dmgScale);
             StartCoroutine(hitboxManger.ActiveHitbox(hitboxFullDmgID, HitboxApperTime, Cooldown));
             StartCoroutine(hitboxManger.ActiveHitbox(hitboxFallOffDmgID, HitboxApperTime, Cooldown));
             
+            bool oneTime = false;
             values.ForEach(v =>
             {
+                oneTime = true;
                 hitboxManger.DealDamgeToAllColliders(
                     v.id,
                     v.dmgAmount,
                     hitboxManger.GetAllColliders(v.id),
+                    HealthScript.TeamSystem.player
+                );
+            });
+            if(oneTime) DidDamge();
+        }
+    }
+
+    bool CanHit()
+    {
+        hitboxManger.hitboxes[hitboxFullDmgID].Activated = true;
+        hitboxManger.RemoveAllHealth(hitboxFullDmgID);
+        return hitboxManger.DealDamgeToAllColliders(
+                    hitboxFullDmgID,
+                    0,
+                    hitboxManger.GetAllColliders(hitboxFullDmgID),
                     HealthScript.TeamSystem.player,
                     DidDamge
                 );
-            });
-        }
     }
 
     void DidDamge()
     {
-        
+        player.rb.linearVelocityY = 0;
+        player.rb.AddForce(Vector2.up * player.JumpForceAmount, ForceMode2D.Impulse);
+        player.HowManyExtraJumps--;
     }
 
     void Start()
     {
         hitboxFullDmgID = hitboxManger.AddHitbox(hitBoxSize, offSet);
         hitboxFallOffDmgID = hitboxManger.AddHitbox(hitBoxSizeFallOff, offSetFallOff);
+    }
+
+    void DashDownEnable()
+    {
+        DashDown = true;
     }
 
     bool allowSpecial = false;
@@ -83,13 +115,14 @@ public class SlamAbility : MonoBehaviour
 
     void OnSpecial()
     {
-        if (allowSpecial && !hitboxManger.hitboxes[hitboxFullDmgID].OnCooldwon && !player.isGrounded && essence.UseAbility(0))
+        if (allowSpecial && !hitboxManger.hitboxes[hitboxFullDmgID].OnCooldwon && !PreformeSpecial&& essence.UseAbility())
         {
             if (hitboxManger.hitboxes[hitboxFullDmgID].FoundedHealths.Count > 0) hitboxManger.RemoveAllHealth(hitboxFullDmgID);
+            PreformeSpecial = true;
             dmgScale = minDmgAmount;
-            player.rb.linearVelocityY = -downSpeed;
-            player.rb.AddForce(-transform.up * downSpeed, ForceMode2D.Impulse);
-            DashDown = true;
+            player.rb.linearVelocityY = upSpeed;
+            player.rb.AddForce(transform.up * upSpeed, ForceMode2D.Impulse);
+            Invoke(nameof(DashDownEnable), timeBeforeFall);
         }
     }
 

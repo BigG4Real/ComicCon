@@ -11,7 +11,7 @@ public class MovementController : MonoBehaviour
     public Vector2 moveDir { get; private set; }
     public Vector2 lastMoveDir = new Vector2(1, 0);
     [Header("Jump")]
-    [SerializeField] float JumpForceAmount;
+    public float JumpForceAmount;
     [SerializeField] float JumpCooldown;
     bool canJumpCooldown = true;
     bool HoldingJump = false;

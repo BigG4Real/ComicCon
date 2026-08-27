@@ -2508,9 +2508,53 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5302119895567462310, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
+      propertyPath: upSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302119895567462310, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
+      propertyPath: downSpeed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302119895567462310, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
+      propertyPath: hitBoxSize.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302119895567462310, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
+      propertyPath: hitBoxSize.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302119895567462310, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
+      propertyPath: maxDmgAmount
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302119895567462310, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
+      propertyPath: minDmgAmount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302119895567462310, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
+      propertyPath: dmgScaleAmount
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302119895567462310, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
+      propertyPath: timeBeforeFall
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302119895567462310, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
+      propertyPath: hitBoxSizeFallOff.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302119895567462310, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
+      propertyPath: hitBoxSizeFallOff.y
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5834591139961952059, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
       propertyPath: m_Name
       value: Player Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8902307532884963262, guid: 266a51f511555a94d86fa2520e75b865, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

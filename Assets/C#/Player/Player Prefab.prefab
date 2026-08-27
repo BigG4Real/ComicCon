@@ -749,15 +749,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SlamAbility
   player: {fileID: 8856688836659063887}
   essence: {fileID: 4447765588372642704}
-  downSpeed: 15
-  hitBoxSize: {x: 10, y: 10}
+  upSpeed: 15
+  timeBeforeFall: 0.25
+  downSpeed: 40
+  hitBoxSize: {x: 5, y: 5}
   offSet: {x: 0, y: 0}
-  minDmgAmount: 20
-  maxDmgAmount: 60
-  dmgScaleAmount: 2
+  minDmgAmount: 10
+  maxDmgAmount: 70
+  dmgScaleAmount: 2.3
   HitboxApperTime: 0.1
   Cooldown: 0.5
-  hitBoxSizeFallOff: {x: 20, y: 20}
+  hitBoxSizeFallOff: {x: 10, y: 10}
   offSetFallOff: {x: 0, y: 0}
   dmgFallOffDivide: 4
   hitboxManger: {fileID: 5900881545673626}
