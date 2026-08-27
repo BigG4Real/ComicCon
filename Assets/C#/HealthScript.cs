@@ -34,12 +34,6 @@ public class HealthScript : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public bool IsSameTeam(TeamSystem teamCheck) {
-        bool isSameTeam = false;
-        if (team == teamCheck)
-        {
-            isSameTeam = true;
-        }
-        return isSameTeam;
-    }
+    public bool IsSameTeam(TeamSystem teamCheck) => team == teamCheck;
+    
 }

@@ -8,6 +8,9 @@ public class MovementController : MonoBehaviour
     [Header("Movement")]
     public Rigidbody2D rb;
     public float Speed;
+    public Vector2 moveDir { get; private set; }
+    public Vector2 lastMoveDir = new Vector2(1, 0);
+    [Header("Jump")]
     [SerializeField] float JumpForceAmount;
     [SerializeField] float JumpCooldown;
     bool canJumpCooldown = true;
@@ -15,8 +18,6 @@ public class MovementController : MonoBehaviour
     [SerializeField] float JumpForceOff;
     [SerializeField] int HowManyExtraJumpsTotal;
     public int HowManyExtraJumps;
-    public Vector2 moveDir { get; private set; }
-    public Vector2 lastMoveDir = new Vector2(1, 0);
 
     [Header("Gravity")]
     [SerializeField] float GravityMultiplier = 1.1f;
@@ -33,11 +34,6 @@ public class MovementController : MonoBehaviour
     RaycastHit2D groundRayHit;
     [Header("Ground Check")]
     [SerializeField] PlayerDash PlayerDash;
-    void Start()
-    {
-        
-        return;
-    }
     
     void Update()
     {

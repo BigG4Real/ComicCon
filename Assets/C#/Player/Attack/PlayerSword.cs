@@ -1,22 +1,27 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
 public class PlayerSword : MonoBehaviour
 {
     [Header("HitBox")]
     [SerializeField] Vector2 attackHitBoxSize;
     [SerializeField] Vector2 attackHitBoxOffset;
+    int normalAttackID;
+
     [Header("Pogo")]
     [SerializeField] Vector2 attackHitBoxSizePogo;
     [SerializeField] Vector2 attackHitBoxOffsetPogo;
-    Vector2 pogoUpOrDown;
-    bool pogo = false;
     [SerializeField] float pogoBoost;
+    bool pogo = false;
+    int pogoAttackID;
+
+    [Header("Up slash")]
+    [SerializeField] Vector2 attackHitBoxOffsetUpSlash;
+    bool upAttack = false;
+    int upAttackID;
+
     [Header("Player")]
     [SerializeField] MovementController player;
     [SerializeField] Essence essence;
@@ -27,200 +32,148 @@ public class PlayerSword : MonoBehaviour
 
     [Header("Small Attack")]
     [SerializeField] float hitboxAppearTime;
-    bool isAttacking;
     [SerializeField] float smallAttackCooldown;
-    float smallAttackTimer;
 
     [Header("Full Attack")]
-    [SerializeField] float hitboxAppearTimeFull;
-    [SerializeField] float AttackCooldownTime;
+    [SerializeField] float FullHitboxAppearTime;
+    [SerializeField] float FullAttackCooldownTime;
     bool isAttackingFull;
-    float attackTimer;
+
     [Header("Effect")]
     [SerializeField] GameObject slash;
+    [SerializeField] hitboxManger hitboxManger;
 
-
-    [SerializeField] List<HealthScript> foundedHealths;
-    Vector2 hitboxPos;
-
-    void AttackDmg()
+    void Start()
     {
-
-        Collider2D[] colliders;
-        UpdateHitBox();
-        if (pogo)
-        {
-            colliders = Physics2D.OverlapBoxAll(hitboxPos, attackHitBoxSizePogo, 0);
-        }
-        else
-        {
-            colliders = Physics2D.OverlapBoxAll(hitboxPos, attackHitBoxSize * transform.localScale, 0);
-        }
-        bool OnlyOnePogo = false;
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            HealthScript health = colliders[i].GetComponentInChildren<HealthScript>();
-            if (health == null) { continue; }
-            bool dupicate = false;
-            for (int j = 0; j < foundedHealths.Count; j++)
-            {
-                if (foundedHealths[j] == health)
-                {
-                    dupicate = true;
-                    continue;
-                }
-            }
-            if (dupicate || health.IsSameTeam(attacker.team)) { continue; }
-            health.Dmg(dmg, attacker.team);
-            foundedHealths.Add(health);
-            essence.GainEssence();
-            player.HowManyExtraJumps = 1;
-            if (pogo && !OnlyOnePogo && (float)Math.Round(pogoUpOrDown.y) < 0)
-            {
-                OnlyOnePogo = false;
-                player.rb.linearVelocityY = 0;
-                player.GravityAmount = player.DefualtGravity;
-                player.rb.AddForce(Vector2.up * pogoBoost, ForceMode2D.Impulse);
-
-            }
-        }
-    }
-
-    void UpdateHitBox()
-    {
-        if (pogo)
-        {
-            hitboxPos = new Vector2(
-            transform.position.x + attackHitBoxOffsetPogo.x * transform.localScale.x,
-            transform.position.y + attackHitBoxOffsetPogo.y* transform.localScale.y * (float)Math.Round(pogoUpOrDown.y)
-            );
-        }
-        else
-        {
-            hitboxPos = new Vector2(
-            transform.position.x + (attackHitBoxOffset.x * player.lastMoveDir.x) * transform.localScale.x,
-            transform.position.y + attackHitBoxOffset.y * transform.localScale.y
-            );
-        }
-    }
-
-    void MakleSlashEffect()
-    {
-        UpdateHitBox();
-        GameObject slashEffect = Instantiate(slash, hitboxPos, transform.rotation);
-        LookAt(slashEffect, transform);
-        Destroy(slashEffect, 2.5f);
-    }
-
-    //Snådd kod från https://discussions.unity.com/t/transform-lookat-target-in-2d/105326
-    void LookAt(GameObject effect, Transform Target)
-    {
-        Vector2 direction = Target.position - effect.transform.position;
-        effect.transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
+        normalAttackID = hitboxManger.AddHitbox(attackHitBoxSize, attackHitBoxOffset);
+        pogoAttackID = hitboxManger.AddHitbox(attackHitBoxSizePogo, attackHitBoxOffsetPogo);
+        upAttackID = hitboxManger.AddHitbox(attackHitBoxSizePogo, attackHitBoxOffsetUpSlash);
     }
 
     void Update()
     {
-        smallAttackTimer -= Time.deltaTime;
-        if (isAttackingFull)
+        List<(int id, float dmgAmount)> values = new List<(int, float)> {
+            (normalAttackID, dmg),
+            (pogoAttackID, dmg),
+            (upAttackID, dmg),
+
+        };
+
+        values.ForEach(v =>
         {
-            player.rb.linearVelocityX = 0;
+            if (!hitboxManger.hitboxes[v.id].Activated) { return; }
+            hitboxManger.DealDamgeToAllColliders(
+                v.id,
+                v.dmgAmount,
+                hitboxManger.GetAllColliders(v.id),
+                HealthScript.TeamSystem.player,
+                DidDamge
+            );
+        });
+    }
+
+    void EnableHitbox(int id, float appearTime, float cooldown)
+    {
+        StartCoroutine(hitboxManger.ActiveHitbox(id, appearTime, cooldown));
+        MakleSlashEffect(id);
+    }
+
+    void DidDamge()
+    {
+        essence.GainEssence();
+        player.HowManyExtraJumps = 1;
+        if (pogo)
+        {
             player.rb.linearVelocityY = 0;
-            attackTimer -= Time.deltaTime;
-            if (attackTimer <= 0)
-            {
-                AttackManyFull();
-            }
+            player.GravityAmount = player.DefualtGravity;
+            player.rb.AddForce(Vector2.up * pogoBoost, ForceMode2D.Impulse);
         }
-        if (isAttacking) { AttackDmg(); }
-        else if(foundedHealths.Count > 0)
+    }
+
+    void MakleSlashEffect(int id)
+    {
+        GameObject slashEffect = Instantiate(
+            slash,
+            new Vector2(
+                transform.position.x + hitboxManger.hitboxes[id].Offset.x * player.lastMoveDir.x,
+                transform.position.y + hitboxManger.hitboxes[id].Offset.y
+            ),
+            transform.rotation);
+        LookAt(slashEffect, transform);
+        Destroy(slashEffect, 1);
+
+
+        //Snådd kod från https://discussions.unity.com/t/transform-lookat-target-in-2d/105326
+        void LookAt(GameObject effect, Transform Target)
         {
-            foundedHealths.Clear();
+            Vector2 direction = Target.position - effect.transform.position;
+            effect.transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
         }
     }
 
-    void RemoveAttack()
+    void FullAttackHitbox()
     {
-        isAttacking = false;
-    }
-
-    void AttackManyFull()
-    {
-        MakleSlashEffect();
-        smallAttackTimer = smallAttackCooldown;
-        attackTimer = AttackCooldownTime;
-        isAttacking = true;
-        Invoke(nameof(RemoveAttack), hitboxAppearTimeFull);
+        if (!isAttackingFull) { return; }
+        player.rb.linearVelocityX = 0;
+        player.rb.linearVelocityY = 0;
+        EnableHitbox(normalAttackID, FullHitboxAppearTime, FullAttackCooldownTime);
+        Invoke(nameof(FullAttackHitbox), FullAttackCooldownTime + FullHitboxAppearTime);
     }
 
     #region Inputs
     void OnShortAttack()
     {
-        isAttackingFull = false;
-        if (isAttacking || smallAttackTimer > 0) { return; }
-        MakleSlashEffect();
-        isAttacking = !isAttacking;
-        smallAttackTimer = smallAttackCooldown;
+        bool alreadyAttack = IsAttacking(new List<int> { pogoAttackID, upAttackID, normalAttackID });
+        if (alreadyAttack) { return; }
 
-        Invoke(nameof(RemoveAttack), hitboxAppearTime);
+        if (pogo)
+            SpeficAttack(pogoAttackID);
+        else if (upAttack)
+            SpeficAttack(upAttackID);
+        else
+            SpeficAttack(normalAttackID);
+
+        void SpeficAttack(int id)
+        {
+            if (hitboxManger.hitboxes[id].Activated) { return; }
+            EnableHitbox(id, hitboxAppearTime, smallAttackCooldown);
+        }
+
+        bool IsAttacking(List<int> allIds)
+        {
+            for (int i = 0; i < allIds.Count; i++)
+            {
+                if (hitboxManger.hitboxes[allIds[i]].Activated) { return true; }
+            }
+            return false;
+        }
     }
 
     void OnUpOrDown(InputValue inputValue)
     {
-        pogoUpOrDown = inputValue.Get<Vector2>();
-        pogo = !pogo;
+        pogo = false;
+        upAttack = false;
+        if (inputValue.Get<Vector2>().y < 0)
+            pogo = true;
+
+
+        if (inputValue.Get<Vector2>().y > 0)
+            upAttack = true;
     }
 
     void OnFullAttack()
     {
-        if(!player.isGrounded) { return; }
+        if (!player.isGrounded) { return; }
         player.rb.simulated = false;
         isAttackingFull = true;
-        attackTimer = AttackCooldownTime;
+        FullAttackHitbox();
     }
 
     void OnAttackRelese()
     {
-        isAttacking = false;
         isAttackingFull = false;
         player.rb.simulated = true;
     }
     #endregion
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Vector2 hitboxPos;
-        if (pogo)
-        {
-            hitboxPos = new Vector2(
-            transform.position.x + attackHitBoxOffsetPogo.x * transform.localScale.x,
-            transform.position.y + attackHitBoxOffsetPogo.y * transform.localScale.y* (float)Math.Round(pogoUpOrDown.y)
-            );
-            if (isAttacking)
-            {
-                Gizmos.DrawCube(hitboxPos, attackHitBoxSizePogo * transform.localScale);
-            }
-            else
-            {
-                Gizmos.DrawWireCube(hitboxPos, attackHitBoxSizePogo * transform.localScale);
-            }
-        }
-        else
-        {
-            hitboxPos = new Vector2(
-            transform.position.x + (attackHitBoxOffset.x * player.lastMoveDir.x* transform.localScale.x),
-            transform.position.y + attackHitBoxOffset.y* transform.localScale.y
-            );
-            if (isAttacking)
-            {
-                Gizmos.DrawCube(hitboxPos, attackHitBoxSize* transform.localScale);
-            }
-            else
-            {
-                Gizmos.DrawWireCube(hitboxPos, attackHitBoxSize* transform.localScale);
-            }
-        }
-
-    }
 }

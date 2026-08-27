@@ -23,7 +23,6 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 944440383353947882}
-  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -62,7 +61,6 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898956482236962987}
-  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -138,7 +136,6 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012099733139646678}
-  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -214,7 +211,6 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3223267157053178707}
-  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -289,7 +285,6 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5314688418518018000}
-  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -384,7 +379,6 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5358990746257053793}
-  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -453,6 +447,8 @@ GameObject:
   - component: {fileID: 6911100362369245062}
   - component: {fileID: 8268903269260594675}
   - component: {fileID: 3199095768662912632}
+  - component: {fileID: 5302119895567462310}
+  - component: {fileID: 5900881545673626}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -579,12 +575,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MovementController
   rb: {fileID: 1629912335688011574}
   Speed: 6
+  lastMoveDir: {x: 1, y: 0}
   JumpForceAmount: 15
   JumpCooldown: 0.1
   JumpForceOff: 2.4
   HowManyExtraJumpsTotal: 1
   HowManyExtraJumps: 0
-  lastMoveDir: {x: 1, y: 0}
   GravityMultiplier: 3
   DefualtGravity: 2
   GravityAmount: 0
@@ -703,20 +699,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4013b1d660423ed409a38402f8dce275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSword
-  attackHitBoxSize: {x: 1.05, y: 0.6}
-  attackHitBoxOffset: {x: 1.03, y: 0.15}
+  attackHitBoxSize: {x: 1.15, y: 0.9}
+  attackHitBoxOffset: {x: 1.08, y: 0}
   attackHitBoxSizePogo: {x: 1.2, y: 1.4}
-  attackHitBoxOffsetPogo: {x: 0, y: 1.2}
+  attackHitBoxOffsetPogo: {x: 0, y: -1.2}
   pogoBoost: 13
+  attackHitBoxOffsetUpSlash: {x: 0, y: 1.2}
   player: {fileID: 8856688836659063887}
   essence: {fileID: 4447765588372642704}
   attacker: {fileID: 5130134268440845696}
   dmg: 5
   hitboxAppearTime: 0.25
   smallAttackCooldown: 0.3
-  hitboxAppearTimeFull: 0.1
-  AttackCooldownTime: 0.15
-  foundedHealths: []
+  FullHitboxAppearTime: 0.15
+  FullAttackCooldownTime: 0.075
+  slash: {fileID: 2883940458832541757, guid: e6442b4bf16ecf5f6bb7473394eb6fbc, type: 3}
+  hitboxManger: {fileID: 5900881545673626}
 --- !u!114 &3199095768662912632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,13 +729,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LaserAbility
   player: {fileID: 8856688836659063887}
   essence: {fileID: 4447765588372642704}
-  attacker: {fileID: 5130134268440845696}
-  hitBox: {x: 40, y: 0.2}
+  hitBoxSize: {x: 40, y: 0.5}
   offSet: {x: 20, y: 0}
   dmgAmount: 30
-  foundedHealths: []
   HitboxApperTime: 0.1
   Cooldown: 0.25
+  hitboxManger: {fileID: 5900881545673626}
+--- !u!114 &5302119895567462310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5767500592966854926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2186a63636a9df4d9d2e0ecaf0612ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SlamAbility
+  player: {fileID: 8856688836659063887}
+  essence: {fileID: 4447765588372642704}
+  downSpeed: 15
+  hitBoxSize: {x: 10, y: 10}
+  offSet: {x: 0, y: 0}
+  minDmgAmount: 20
+  maxDmgAmount: 60
+  dmgScaleAmount: 2
+  HitboxApperTime: 0.1
+  Cooldown: 0.5
+  hitBoxSizeFallOff: {x: 20, y: 20}
+  offSetFallOff: {x: 0, y: 0}
+  dmgFallOffDivide: 4
+  hitboxManger: {fileID: 5900881545673626}
+--- !u!114 &5900881545673626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5767500592966854926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c003d78075e002840bec87ce5aec6560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::hitboxManger
+  hitboxes: []
 --- !u!1 &5797665469702854683
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,7 +1037,6 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7654275834553237493}
-  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1040,7 +1075,6 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8377761161573679479}
-  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1116,7 +1150,6 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8401220654203763252}
-  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1193,7 +1226,6 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8568805412476171083}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}

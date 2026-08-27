@@ -67,12 +67,12 @@
                     "priority": 0
                 },
                 {
-                    "name": "Laser",
+                    "name": "Special",
                     "type": "Button",
                     "id": "291a5858-a7b1-42eb-b589-d96a09e8309f",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false,
                     "priority": 0
                 },
@@ -606,7 +606,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Laser",
+                    "action": "Special",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
