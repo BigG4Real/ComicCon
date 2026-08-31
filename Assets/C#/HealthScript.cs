@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class HealthScript : MonoBehaviour
@@ -11,15 +12,24 @@ public class HealthScript : MonoBehaviour
     public TeamSystem team;
 
     public float Health;
+    public float MaxHealth;
     public bool canTakeDamge = true;
+
+    void Start()
+    {
+        if (MaxHealth == 0)
+        {
+            MaxHealth = Health;
+        }
+    }
 
     public virtual void Heal(float healAmount)
     {
-        Health += healAmount;
+        Math.Clamp(Health + healAmount, 0, MaxHealth);
     }
     public virtual void Dmg(float damgeAmount, TeamSystem attacker)
     {
-        if (!canTakeDamge && !IsSameTeam(attacker))
+        if (canTakeDamge && !IsSameTeam(attacker))
         {
             Health -= damgeAmount;
         }

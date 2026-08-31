@@ -67,7 +67,8 @@ public class PlayerSword : MonoBehaviour
                 v.dmgAmount,
                 hitboxManger.GetAllColliders(v.id),
                 HealthScript.TeamSystem.player,
-                DidDamge
+                Hit,
+                HitInvis
             );
         });
     }
@@ -78,7 +79,17 @@ public class PlayerSword : MonoBehaviour
         MakleSlashEffect(id);
     }
 
-    void DidDamge()
+    void HitInvis()
+    {
+        player.HowManyExtraJumps = 1;
+        if (pogo)
+        {
+            player.rb.linearVelocityY = 0;
+            player.GravityAmount = player.DefualtGravity;
+            player.rb.AddForce(Vector2.up * pogoBoost, ForceMode2D.Impulse);
+        }
+    }
+    void Hit()
     {
         essence.GainEssence();
         player.HowManyExtraJumps = 1;

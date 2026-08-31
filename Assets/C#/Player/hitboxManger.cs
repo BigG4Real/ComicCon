@@ -69,11 +69,11 @@ public class hitboxManger : MonoBehaviour
             transform.position.y + hitboxes[index].Offset.y * transform.localScale.y
         );
         colliders = Physics2D.OverlapBoxAll(hitboxPos, hitboxes[index].Size, 0);
-        
+
         return colliders;
     }
 
-    public bool DealDamgeToAllColliders(int index, float damgeAmount, Collider2D[] colliders, HealthScript.TeamSystem team, Action onHit = null)
+    public bool DealDamgeToAllColliders(int index, float damgeAmount, Collider2D[] colliders, HealthScript.TeamSystem team, Action onHit = null, Action onHitInvis = null)
     {
         if (!hitboxes[index].Activated) { return false; }
         bool didHitSomething = false;
@@ -90,17 +90,24 @@ public class hitboxManger : MonoBehaviour
                     continue;
                 }
             }
-            if (dupicate || health.IsSameTeam(team)) { continue; }
+            if (!dupicate && !health.IsSameTeam(team) && !health.canTakeDamge && onHitInvis != null)
+            {
+                onHitInvis();
+                return true;
+            }
+            if (dupicate || health.IsSameTeam(team) || !health.canTakeDamge) { continue; }
+
             didHitSomething = true;
             health.Dmg(damgeAmount, team);
             hitboxes[index].FoundedHealths.Add(health);
         }
         if (onHit != null && didHitSomething) {
             onHit();
-            return true;
         }
+        else if(didHitSomething) { return didHitSomething;  }
         return false;
     }
+
 #if UNITY_EDITOR
     void OnDrawGizmos()
     {

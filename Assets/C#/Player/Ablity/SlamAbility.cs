@@ -59,18 +59,17 @@ public class SlamAbility : MonoBehaviour
             StartCoroutine(hitboxManger.ActiveHitbox(hitboxFullDmgID, HitboxApperTime, Cooldown));
             StartCoroutine(hitboxManger.ActiveHitbox(hitboxFallOffDmgID, HitboxApperTime, Cooldown));
             
-            bool oneTime = false;
             values.ForEach(v =>
             {
-                oneTime = true;
                 hitboxManger.DealDamgeToAllColliders(
                     v.id,
                     v.dmgAmount,
                     hitboxManger.GetAllColliders(v.id),
-                    HealthScript.TeamSystem.player
+                    HealthScript.TeamSystem.player,
+                    DidDamge,
+                    DidDamge
                 );
             });
-            if(oneTime) DidDamge();
         }
     }
 
@@ -83,6 +82,7 @@ public class SlamAbility : MonoBehaviour
                     0,
                     hitboxManger.GetAllColliders(hitboxFullDmgID),
                     HealthScript.TeamSystem.player,
+                    null,
                     DidDamge
                 );
     }

@@ -14,15 +14,15 @@ public class SpillEssenceOnHit : MonoBehaviour
     {
         if (lastHealth != health.Health)
         {
-            SpillEssence();
+            Destroy(SpillEssence(), 1.5f);
             lastHealth = health.Health;
         }
     }
 
-    void SpillEssence()
+    GameObject SpillEssence()
     {
-        GameObject obj = essenceSpillObject;
-        Instantiate(obj, transform.position, transform.rotation, transform);
+        GameObject obj = Instantiate(essenceSpillObject, transform.position, transform.rotation, transform);
         obj.GetComponent<particallEssenceGive>().moveForawrd = moveOut;
+        return obj;
     }
 }
