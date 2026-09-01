@@ -4,6 +4,7 @@ using System.Collections;
 using System.ComponentModel;
 using UnityEngine.Rendering;
 using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class hitboxManger : MonoBehaviour
 {
@@ -38,6 +39,15 @@ public class hitboxManger : MonoBehaviour
         newHitBox.AvilibleLayers = avilibleLayersID;
         hitboxes.Add(newHitBox);
         return hitboxes.Count - 1;
+    }
+
+    public bool IsAnyHitboxActive()
+    {
+        for (int i = 0; i < hitboxes.Count; i++)
+        {
+            if (hitboxes[i].Activated) return true;
+        }
+        return false;
     }
 
     public IEnumerator ActiveHitbox(int index, float hitBoxUppTime, float cooldown)

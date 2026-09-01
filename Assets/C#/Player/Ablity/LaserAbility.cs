@@ -35,7 +35,7 @@ public class LaserAbility : MonoBehaviour
 
     void OnSpecial()
     {
-        if (!hitboxManger.hitboxes[hitboxID].OnCooldwon && allowSpecial && essence.UseAbility())
+        if (!hitboxManger.hitboxes[hitboxID].OnCooldwon && allowSpecial && !hitboxManger.IsAnyHitboxActive() && essence.UseAbility())
         {
             if(hitboxManger.hitboxes[hitboxID].FoundedHealths.Count > 0) hitboxManger.RemoveAllHealth(hitboxID);
             

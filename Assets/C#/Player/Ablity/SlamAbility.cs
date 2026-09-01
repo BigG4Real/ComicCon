@@ -115,7 +115,7 @@ public class SlamAbility : MonoBehaviour
 
     void OnSpecial()
     {
-        if (allowSpecial && !hitboxManger.hitboxes[hitboxFullDmgID].OnCooldwon && !PreformeSpecial&& essence.UseAbility())
+        if (allowSpecial && !hitboxManger.hitboxes[hitboxFullDmgID].OnCooldwon && !PreformeSpecial && !hitboxManger.IsAnyHitboxActive() &&  essence.UseAbility())
         {
             if (hitboxManger.hitboxes[hitboxFullDmgID].FoundedHealths.Count > 0) hitboxManger.RemoveAllHealth(hitboxFullDmgID);
             PreformeSpecial = true;

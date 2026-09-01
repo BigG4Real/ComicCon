@@ -146,7 +146,7 @@ public class PlayerSword : MonoBehaviour
 
         void SpeficAttack(int id)
         {
-            if (hitboxManger.hitboxes[id].Activated) { return; }
+            if (hitboxManger.hitboxes[id].Activated && !hitboxManger.IsAnyHitboxActive()) { return; }
             EnableHitbox(id, hitboxAppearTime, smallAttackCooldown);
         }
 
