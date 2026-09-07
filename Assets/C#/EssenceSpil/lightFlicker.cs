@@ -16,6 +16,7 @@ public class lightFlicker : MonoBehaviour
 
     [SerializeField] float LifeTime;
     [SerializeField] float KillSpeed;
+    [SerializeField] bool ShouldKillLight = true;
 
     void Start()
     {
@@ -26,7 +27,12 @@ public class lightFlicker : MonoBehaviour
     void Update()
     {
         LifeTime -= Time.deltaTime;
-        if (LifeTime > 0)
+        if (LifeTime > 0 && ShouldKillLight)
+        {
+            Flicker();
+            return;
+        }
+        if(!ShouldKillLight)
         {
             Flicker();
             return;

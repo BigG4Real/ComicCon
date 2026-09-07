@@ -9,6 +9,12 @@ public class PlayerDash : MonoBehaviour
     [SerializeField] float ResetTime;
     public bool isDashing { get; private set; }
     bool CanDash = true;
+    [SerializeField] Animator ani;
+
+    void Update()
+    {
+        ani.SetBool("Dash", isDashing);
+    }
 
     void ResetDash()
     {

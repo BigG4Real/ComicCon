@@ -34,6 +34,11 @@ public class MovementController : MonoBehaviour
     RaycastHit2D groundRayHit;
     [Header("Ground Check")]
     [SerializeField] PlayerDash PlayerDash;
+    [Header("Animation")]
+    [SerializeField] Animator ani;
+    [SerializeField] SpriteRenderer[] playerVisule;
+    [SerializeField] Transform[] lights;
+
     
     void Update()
     {
@@ -43,7 +48,29 @@ public class MovementController : MonoBehaviour
         if(isGrounded){
             HowManyExtraJumps = HowManyExtraJumpsTotal;
         }
+        AnimatorHandler();
         return;
+    }
+
+    void AnimatorHandler(){
+        ani.SetBool("IsWalking", moveDir.x != 0);
+        ani.SetBool("IsFalling", !isGrounded);
+        for (int i = 0; i < playerVisule.Length; i++)
+        {
+            playerVisule[i].flipX = lastMoveDir.x == -1;
+            playerVisule[i].flipX = !(lastMoveDir.x == 1);
+        }
+        for (int i = 0; i < lights.Length; i++)
+        {
+            if(lights[i].localPosition.x > 0 && lastMoveDir.x == -1){
+                float val = lights[i].localPosition.x * -1; 
+                lights[i].localPosition = new Vector2(val, 0.153f);
+            }
+            else if(lights[i].localPosition.x < 0 && lastMoveDir.x == 1){
+                float val = lights[i].localPosition.x * -1; 
+                lights[i].localPosition = new Vector2(val, 0.153f);
+            }
+        }
     }
 
     bool GroundCheck(){
@@ -92,7 +119,8 @@ public class MovementController : MonoBehaviour
 
     void OnMove(InputValue value)
     {
-        moveDir = value.Get<Vector2>();
+        Vector2 input =value.Get<Vector2>();
+        moveDir = new Vector2((float)Math.Round(input.x),(float)Math.Round(input.y));
         return;
     }
 
@@ -105,6 +133,7 @@ public class MovementController : MonoBehaviour
         HoldingJump = !HoldingJump;
 
         if((isGrounded || (!isGrounded && HowManyExtraJumps >= 1)) && canJumpCooldown && HoldingJump){
+            ani.SetTrigger("Jumping");
             rb.linearVelocityY = 0;
             rb.AddForce(Vector2.up * JumpForceAmount, ForceMode2D.Impulse);
             canJumpCooldown = false;

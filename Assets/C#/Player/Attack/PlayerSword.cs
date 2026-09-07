@@ -162,8 +162,15 @@ public class PlayerSword : MonoBehaviour
 
     void OnUpOrDown(InputValue inputValue)
     {
+        Vector2 input =inputValue.Get<Vector2>();
         pogo = false;
         upAttack = false;
+
+        if (input.y <= 0.5f && input.y >= -0.5f)
+        {
+            input.y = 0;
+            return;
+        }
         if (inputValue.Get<Vector2>().y < 0)
             pogo = true;
 

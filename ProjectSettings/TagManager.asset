@@ -41,6 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Mushroom
+    uniqueID: 778499635
+    locked: 0
+  - name: Player
+    uniqueID: 4176283657
+    locked: 0
   m_RenderingLayers:
   - Default
   m_MigratedRenderPipelines: []

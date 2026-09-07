@@ -197,10 +197,10 @@ MonoBehaviour:
     rid: 7032937599679332429
   m_FalloffIntensity: 1
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 0.61
+  m_Intensity: 1.51
   m_LightVolumeIntensity: 0.03
   m_LightVolumeEnabled: 1
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 0000000033f6662e0908edf8
   m_LightCookieSprite: {fileID: 21300000, guid: 40c16cb9ef514d503b1e5aca7996e166, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -286,8 +286,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::lightFlicker
   MinAndMax: {x: 0.3, y: 0.9}
   Speed: 30
-  defult: 0.61
-  current: 0.61
+  defult: 1.51
+  current: 1.51
   target: 0
   lights: {fileID: 5274414615253253947}
   LifeTime: 0.2
