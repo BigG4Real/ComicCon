@@ -11,7 +11,7 @@ public class AILos : MonoBehaviour
 
     [Header("Seeing eneamy")]
     public static List<GameObject> targets = new List<GameObject>();
-    [SerializeField] List<GameObject> Seeing;
+    public List<GameObject> Seeing;
     [SerializeField] float SeeingTimeAmount;
     List<float> SeeingTimer = new List<float>();
 

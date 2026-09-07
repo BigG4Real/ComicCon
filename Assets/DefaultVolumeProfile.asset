@@ -15,7 +15,7 @@ MonoBehaviour:
   active: 1
   mode:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 1
   neutralHDRRangeReductionMode:
     m_OverrideState: 1
     m_Value: 2
@@ -55,7 +55,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 1.66
+    m_Value: 0
   tintColor:
     m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -131,7 +131,7 @@ MonoBehaviour:
     m_Value: 0.374
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0.355
   rounded:
     m_OverrideState: 1
     m_Value: 0
@@ -150,10 +150,10 @@ MonoBehaviour:
   active: 1
   type:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 2
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.2
   response:
     m_OverrideState: 1
     m_Value: 0.8
@@ -235,7 +235,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.04
+    m_Value: 0.055
   xMultiplier:
     m_OverrideState: 1
     m_Value: 1
@@ -263,7 +263,7 @@ MonoBehaviour:
   active: 1
   distance:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.2
   cropToFit:
     m_OverrideState: 1
     m_Value: 0.634
@@ -360,10 +360,10 @@ MonoBehaviour:
   active: 1
   temperature:
     m_OverrideState: 1
-    m_Value: -7
+    m_Value: -13.8
   tint:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 52.4
 --- !u!114 &1966524348496492187
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -407,13 +407,13 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.22
+    m_Value: 2.14
   intensity:
     m_OverrideState: 1
-    m_Value: 0.12
+    m_Value: 0.15
   scatter:
     m_OverrideState: 1
-    m_Value: 0.626
+    m_Value: 0.39
   clamp:
     m_OverrideState: 1
     m_Value: 65472
@@ -689,13 +689,13 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    m_Value: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
   highlights:
     m_OverrideState: 1
     m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   balance:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 35.2
 --- !u!114 &4206143608310177964
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -745,7 +745,7 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: 1.17
+    m_Value: 0
   contrast:
     m_OverrideState: 1
     m_Value: 0
@@ -757,7 +757,7 @@ MonoBehaviour:
     m_Value: 0
   saturation:
     m_OverrideState: 1
-    m_Value: 20
+    m_Value: 0
 --- !u!114 &6705542504481032510
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -779,7 +779,7 @@ MonoBehaviour:
     m_Value: {x: 1, y: 1, z: 1, w: 0}
   gain:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0.34752396}
+    m_Value: {x: 1, y: 1, z: 1, w: -0.006389777}
 --- !u!114 &8058002791248481636
 MonoBehaviour:
   m_ObjectHideFlags: 3
