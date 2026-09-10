@@ -1,10 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
-using System.ComponentModel;
-using UnityEngine.Rendering;
 using System;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 public class hitboxManger : MonoBehaviour
 {
@@ -19,24 +16,21 @@ public class hitboxManger : MonoBehaviour
         [Header("Active")]
         public bool Activated;
         public bool OnCooldwon;
+        public bool MakeItInvis;
         public List<HealthScript> FoundedHealths = new List<HealthScript>();
     }
     public List<Hitbox> hitboxes;
-    MovementController movement;
-
-    void Start()
-    {
-        movement = GetComponent<MovementController>();
-    }
+    [SerializeField] SpriteRenderer lookingDir;
 
     public void RemoveAllHealth(int index) => hitboxes[index].FoundedHealths.Clear();
 
-    public int AddHitbox(Vector2 size, Vector2 offset, int avilibleLayersID = ~0)
+    public int AddHitbox(Vector2 size, Vector2 offset, int avilibleLayersID = ~0, bool ivis = true)
     {
         Hitbox newHitBox = new Hitbox();
         newHitBox.Size = size;
         newHitBox.Offset = offset;
         newHitBox.AvilibleLayers = avilibleLayersID;
+        newHitBox.MakeItInvis = ivis;
         hitboxes.Add(newHitBox);
         return hitboxes.Count - 1;
     }
@@ -75,10 +69,10 @@ public class hitboxManger : MonoBehaviour
         Collider2D[] colliders;
 
         Vector2 hitboxPos = new Vector2(
-            transform.position.x + hitboxes[index].Offset.x * transform.localScale.x * movement.lastMoveDir.x,
+            transform.position.x + hitboxes[index].Offset.x * transform.localScale.x * (lookingDir.flipX ? -1 : 1),
             transform.position.y + hitboxes[index].Offset.y * transform.localScale.y
         );
-        colliders = Physics2D.OverlapBoxAll(hitboxPos, hitboxes[index].Size, 0);
+        colliders = Physics2D.OverlapBoxAll(hitboxPos, hitboxes[index].Size * transform.localScale, 0);
 
         return colliders;
     }
@@ -109,6 +103,12 @@ public class hitboxManger : MonoBehaviour
 
             didHitSomething = true;
             health.Dmg(damgeAmount, team);
+            health.canTakeDamge = hitboxes[index].MakeItInvis;
+            try
+            {
+                health.GetComponentInChildren<AILos>().CanSee(lookingDir.gameObject);
+            }
+            catch{}
             hitboxes[index].FoundedHealths.Add(health);
         }
         if (onHit != null && didHitSomething) {
@@ -121,12 +121,14 @@ public class hitboxManger : MonoBehaviour
 #if UNITY_EDITOR
     void OnDrawGizmos()
     {
-        if (movement == null) return;
+        if (lookingDir == null) return;
         Gizmos.color = Color.red;
+
+        int flip = lookingDir.flipX ? -1 : 1;
         for (int i = 0; i < hitboxes.Count; i++)
         {
             Vector2 hitboxPos = new Vector2(
-                transform.position.x + hitboxes[i].Offset.x * transform.localScale.x * movement.lastMoveDir.x,
+                transform.position.x + hitboxes[i].Offset.x * transform.localScale.x * flip,
                 transform.position.y + hitboxes[i].Offset.y * transform.localScale.y
             );
             if (hitboxes[i].Activated)

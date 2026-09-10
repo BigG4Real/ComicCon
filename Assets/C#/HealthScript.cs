@@ -25,7 +25,7 @@ public class HealthScript : MonoBehaviour
 
     public virtual void Heal(float healAmount)
     {
-        Math.Clamp(Health + healAmount, 0, MaxHealth);
+        Health = Math.Clamp(Health + healAmount, 0, MaxHealth);
     }
     public virtual void Dmg(float damgeAmount, TeamSystem attacker)
     {

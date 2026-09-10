@@ -55,11 +55,13 @@ public class UpdateHealthUI : MonoBehaviour
 
         for (int i = 0; i < Hearts.Length; i++)
         {
-            if (HealthSlider.value > i)
-            {
-                
-            }
+            Hearts[i].enabled = CurrentHeart >= i ? true : false;
         }
+        Hearts[CurrentHeart].enabled = (LastHealth != 0 && Hearts[CurrentHeart]) ? true : false;
+        Hearts[CurrentHeart].transform.localScale =
+            (Hearts[CurrentHeart] != null) 
+            ? orginalSize 
+            : Hearts[CurrentHeart].transform.localScale;
 
         /*if (LastHealth != 0 && Hearts[CurrentHeart] != null)
         {

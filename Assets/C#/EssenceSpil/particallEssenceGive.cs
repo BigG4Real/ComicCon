@@ -11,7 +11,7 @@ public class particallEssenceGive : MonoBehaviour
 
     List<ParticleSystem.Particle> enter = new List<ParticleSystem.Particle>();
 
-    void Start()
+    public void StartEssence()
     {
         GameObject player = GameObject.FindWithTag("Player");
         ps = GetComponent<ParticleSystem>();

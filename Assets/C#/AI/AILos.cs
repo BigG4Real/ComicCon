@@ -58,11 +58,19 @@ public class AILos : MonoBehaviour
             }
         }
         Debug.DrawRay(transform.position, DirToEneamy, Color.green);
+        
+        CanSee(LookForObj);
+
+        return true;
+    }
+
+    public void CanSee(GameObject obj)
+    {
         bool HaveObj = false;
 
         for (int i = 0; i < Seeing.Count; i++)
         {
-            if (Seeing[i] == LookForObj)
+            if (Seeing[i] == obj)
             {
                 SeeingTimer[i] = SeeingTimeAmount;
                 HaveObj = true;
@@ -72,11 +80,9 @@ public class AILos : MonoBehaviour
 
         if (!HaveObj)
         {
-            Seeing.Add(LookForObj);
+            Seeing.Add(obj);
             SeeingTimer.Add(SeeingTimeAmount);
         }
-
-        return true;
     }
 
     void OnDrawGizmos()
