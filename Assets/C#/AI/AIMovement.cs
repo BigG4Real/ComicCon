@@ -31,6 +31,7 @@ public class AIMovement : MonoBehaviour
     [SerializeField] bool AllowMove = true;
 
     [SerializeField] SpriteRenderer sprite;
+    [SerializeField] bool AllowFly;
 
     void Update()
     {
@@ -38,11 +39,22 @@ public class AIMovement : MonoBehaviour
         UpdateLos(FindNearest());
         if (aiLos.Seeing.Count > 0 && AllowMove)
         {
+            if (AllowFly)
+            {
+                FlyTo(DiractionTo(FindNearest()));
+                return;
+            }
             GoTo(FindNearest());
             return;
         }
         if(AllowMove)
             Walk(CheckAllDiraction());
+    }
+
+    void FlyTo(Vector2 pos)
+    {
+        rb.linearVelocityX = runSpeed * pos.x;
+        rb.linearVelocityY = runSpeed * pos.y;
     }
 
     void UpdateLos(GameObject obj)
@@ -85,11 +97,6 @@ public class AIMovement : MonoBehaviour
         }
     }
 
-    void ResetJump()
-    {
-        canJump = true;
-    }
-
     void Walk(Vector2 checkDiraction)
     {
         sate = EneamySate.walk;
@@ -101,6 +108,12 @@ public class AIMovement : MonoBehaviour
             Invoke(nameof(ResetDiraction), 0.5f); 
         }
     }
+
+    void ResetJump()
+    {
+        canJump = true;
+    }
+
 
     void ResetDiraction()
     {
