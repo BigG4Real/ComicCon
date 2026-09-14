@@ -53,6 +53,7 @@ public class AIMovement : MonoBehaviour
 
     void FlyTo(Vector2 pos)
     {
+        pos = new Vector2(Math.Clamp(pos.x, -1, 1), Math.Clamp(pos.y, -1, 1)).normalized;
         rb.linearVelocityX = runSpeed * pos.x;
         rb.linearVelocityY = runSpeed * pos.y;
     }
