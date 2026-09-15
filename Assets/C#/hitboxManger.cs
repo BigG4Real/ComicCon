@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class hitboxManger : MonoBehaviour
 {
@@ -16,21 +18,21 @@ public class hitboxManger : MonoBehaviour
         [Header("Active")]
         public bool Activated;
         public bool OnCooldwon;
-        public bool MakeItInvis;
+        public bool CanTakeDmgAfter;
         public List<HealthScript> FoundedHealths = new List<HealthScript>();
     }
     public List<Hitbox> hitboxes;
     [SerializeField] SpriteRenderer lookingDir;
-
+    
     public void RemoveAllHealth(int index) => hitboxes[index].FoundedHealths.Clear();
 
-    public int AddHitbox(Vector2 size, Vector2 offset, int avilibleLayersID = ~0, bool ivis = true)
+    public int AddHitbox(Vector2 size, Vector2 offset, int avilibleLayersID = ~0, bool CanTakeDmgAfter = true)
     {
         Hitbox newHitBox = new Hitbox();
         newHitBox.Size = size;
         newHitBox.Offset = offset;
         newHitBox.AvilibleLayers = avilibleLayersID;
-        newHitBox.MakeItInvis = ivis;
+        newHitBox.CanTakeDmgAfter = CanTakeDmgAfter;
         hitboxes.Add(newHitBox);
         return hitboxes.Count - 1;
     }
@@ -103,12 +105,13 @@ public class hitboxManger : MonoBehaviour
 
             didHitSomething = true;
             health.Dmg(damgeAmount, team);
-            health.canTakeDamge = hitboxes[index].MakeItInvis;
+            health.canTakeDamge = hitboxes[index].CanTakeDmgAfter;
             try
             {
                 health.GetComponentInChildren<AILos>().CanSee(lookingDir.gameObject);
             }
             catch{}
+            if(health.team == HealthScript.TeamSystem.player) StartCoroutine(SlowMotion(0.3f, 0.05f));
             hitboxes[index].FoundedHealths.Add(health);
         }
         if (onHit != null && didHitSomething) {
@@ -116,6 +119,53 @@ public class hitboxManger : MonoBehaviour
         }
         else if(didHitSomething) { return didHitSomething;  }
         return false;
+    }
+
+    IEnumerator SlowMotion(float howLong, float timeScale)
+    {
+        Volume volume = GameObject.Find("Post").GetComponent<Volume>();
+    
+        Time.timeScale = timeScale;
+        if (volume.profile.TryGet(out ChannelMixer channelMixer))
+        {
+            float transitionTime = howLong;
+
+            Vector3 normal = new Vector3(
+                channelMixer.redOutRedIn.value,
+                channelMixer.greenOutGreenIn.value,
+                channelMixer.blueOutBlueIn.value
+            );
+            Vector3 target = new Vector3(125f, -35f, -35f);
+
+            float timer = 0f;
+            while (timer < transitionTime)
+            {
+                timer += Time.unscaledDeltaTime;
+
+                float t = Mathf.SmoothStep(0f, 1f, timer / transitionTime);
+                channelMixer.redOutRedIn.value = Mathf.Lerp(normal.x, target.x, t);
+                channelMixer.greenOutGreenIn.value = Mathf.Lerp(normal.y, target.y, t);
+                channelMixer.blueOutBlueIn.value = Mathf.Lerp(normal.z, target.z, t);
+
+                yield return null;
+            }
+
+            timer = 0f;
+            Time.timeScale = 1f;
+            while (timer < transitionTime)
+            {
+                timer += Time.unscaledDeltaTime;
+                float t = Mathf.SmoothStep(0f, 1f, timer / transitionTime);
+
+                channelMixer.redOutRedIn.value = Mathf.Lerp(target.x, normal.x, t);
+                channelMixer.greenOutGreenIn.value = Mathf.Lerp(target.y, normal.y, t);
+                channelMixer.blueOutBlueIn.value = Mathf.Lerp(target.z, normal.z, t);
+                yield return null;
+            }
+            channelMixer.redOutRedIn.value = normal.x;
+            channelMixer.greenOutGreenIn.value = normal.y;
+            channelMixer.blueOutBlueIn.value = normal.z;
+        }
     }
 
 #if UNITY_EDITOR
@@ -142,4 +192,23 @@ public class hitboxManger : MonoBehaviour
         }
     }
 #endif
+
+    void OnDestroy()
+    {
+        Volume volume = null;
+        try{
+            volume = GameObject.Find("Post").GetComponent<Volume>();
+        }
+        catch
+        {
+            return;
+        }
+        Time.timeScale = 1;
+        if (volume.profile.TryGet(out ChannelMixer channelMixer))
+        {
+            channelMixer.redOutRedIn.value = 100;
+            channelMixer.greenOutGreenIn.value = 100;
+            channelMixer.blueOutBlueIn.value = 100;
+        }
+    }
 }

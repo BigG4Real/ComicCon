@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Essence : MonoBehaviour
 {
-    [SerializeField] float essenceAmount;
+    public float essenceAmount;
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] Light2D glowLight;
     [SerializeField] Slider essenceSlider;

@@ -11,20 +11,31 @@ public class BasicEneamy : MonoBehaviour
     [SerializeField] Vector2 RandomStandTime;
     [SerializeField] Vector2 BetweenRandomStand;
     float BeforeStand;
+    
     [Header("Attacks")]
     [SerializeField] hitboxManger hitbox;
-    [SerializeField] Vector2 Size;
-    int hitboxID;
+    [SerializeField] Vector2 SizeOfEneamy;
+    int hitboxIDCollider;
+    [Header("Above Attack")]
+    [SerializeField] AILos IsAbove;
+    [SerializeField] Vector2 AttackAboveSize;
+    [SerializeField] Vector2 AttackAboveOfset;
+    int hitboxIDAbove;
+
+    [Header("Animation")]
+    [SerializeField] Animator ani;
+
 
     void Start()
     {
-        hitboxID = hitbox.AddHitbox(Size, new Vector2(), 6, false);
+        hitboxIDCollider = hitbox.AddHitbox(SizeOfEneamy, new Vector2(), 6, false);
+        hitboxIDAbove = hitbox.AddHitbox(AttackAboveSize, AttackAboveOfset, 6, false);
+        RemoveAllHealth();
     }
 
     void Update()
     {
         BeforeStand -= Time.deltaTime;
-        GameObject nearestObj = null;
         if (BeforeStand <= 0)
         {
             BeforeStand = Random.Range((float)BetweenRandomStand.x, (float)BetweenRandomStand.y);
@@ -33,15 +44,38 @@ public class BasicEneamy : MonoBehaviour
                 StartCoroutine(Stand(Random.Range((float)RandomStandTime.x, (float)RandomStandTime.y)));
             }
         }
-        hitbox.DealDamgeToAllColliders(hitboxID, 1, hitbox.GetAllColliders(hitboxID), HealthScript.TeamSystem.eneamy);
-        hitbox.RemoveAllHealth(hitboxID);
-        StartCoroutine(hitbox.ActiveHitbox(hitboxID, 999, 0));
+
+        if(IsAbove.Seeing.Count > 0)
+        {
+            Invoke(nameof(AttackUp), 0.5f);
+        }
+
+        hitbox.DealDamgeToAllColliders(hitboxIDCollider, 1, hitbox.GetAllColliders(hitboxIDCollider), HealthScript.TeamSystem.eneamy);
+        StartCoroutine(hitbox.ActiveHitbox(hitboxIDCollider, 999, 0));
+    }
+
+    void AttackUp()
+    {
+        ani.SetBool("UpAttack", (IsAbove.Seeing.Count > 0));
+        if(!(IsAbove.Seeing.Count > 0)) return;
+        hitbox.DealDamgeToAllColliders(hitboxIDAbove, 1, hitbox.GetAllColliders(hitboxIDAbove), HealthScript.TeamSystem.eneamy);
+        hitbox.RemoveAllHealth(hitboxIDAbove);
+        StartCoroutine(hitbox.ActiveHitbox(hitboxIDAbove, 0.1f, 0));
+    }
+
+    void RemoveAllHealth()
+    {
+        hitbox.RemoveAllHealth(hitboxIDCollider);
+        hitbox.RemoveAllHealth(hitboxIDAbove);
+        Invoke(nameof(RemoveAllHealth), 0.3f);
     }
 
     IEnumerator Stand(float time)
     {
+        ani.SetBool("Walk", false);
         ai.AllowMoveTo(false);
         yield return new WaitForSeconds(time);
+        ani.SetBool("Walk", true);
         ai.AllowMoveTo(true);
     }
 

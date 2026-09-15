@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework.Internal.Commands;
 using UnityEngine;
 
@@ -16,14 +17,19 @@ public class HealAbility : MonoBehaviour
 
     void Update()
     {
-        if(isHealing){ StartHeal(); }
+        if(isHealing && player.isGrounded){ StartHeal(); }
     }
 
     void StartHeal()
     {
-        player.rb.simulated = false;
-        essenceConsumed += essenceEatingSpeed * Time.deltaTime;
-        if (essence.UseAbility(essenceEatingSpeed * Time.deltaTime) && essenceConsumed >= essenceToHeal)
+        player.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        float eating = Math.Clamp(essenceEatingSpeed * Time.deltaTime, 0, essence.essenceAmount);
+        essenceConsumed += eating;
+        if(essenceConsumed > essenceToHeal)
+        {
+            essence.GainEssence(essenceConsumed - essenceToHeal);
+        }
+        if (essence.essenceAmount != 0 &&essence.UseAbility(eating) && essenceConsumed >= essenceToHeal)
         {
             Heal();
         }
@@ -39,7 +45,7 @@ public class HealAbility : MonoBehaviour
 
     void InteruptHeal()
     {
-        player.rb.simulated = true;
+        player.rb.constraints &= ~RigidbodyConstraints2D.FreezePosition;
         essenceConsumed = 0;
     }
 

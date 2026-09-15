@@ -67,7 +67,7 @@ public class AIMovement : MonoBehaviour
             LookTo = obj.transform.position - transform.position;
             LookTo = new Vector2(Math.Clamp(LookTo.x, -1, 1), 0);
         }
-        if (LookTo == new Vector2(1, 0) || walkSpeed > 0)
+        if (LookTo == new Vector2(1, 0))
         {
             sprite.flipX = false;
             newQuaternion.Set(0, 0, 0, 1);

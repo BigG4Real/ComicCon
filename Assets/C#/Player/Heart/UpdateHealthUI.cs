@@ -62,16 +62,5 @@ public class UpdateHealthUI : MonoBehaviour
             (Hearts[CurrentHeart] != null) 
             ? orginalSize 
             : Hearts[CurrentHeart].transform.localScale;
-
-        /*if (LastHealth != 0 && Hearts[CurrentHeart] != null)
-        {
-            Hearts[CurrentHeart].enabled = true;
-            Hearts[CurrentHeart].transform.localScale = orginalSize;
-        }
-        if (CurrentHeart == -1 || (LastHealth != Hearts.Length && Hearts[CurrentHeart++] != null))
-        {
-            Hearts[CurrentHeart++].enabled = false;
-            Hearts[CurrentHeart].transform.localScale = orginalSize; 
-        }*/
     }
 }

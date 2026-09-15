@@ -58,14 +58,14 @@ MonoBehaviour:
     m_Bits: 8
   sate: 0
   rb: {fileID: 931645152012241298}
-  walkSpeed: 2
-  runSpeed: 6
+  walkSpeed: 0
+  runSpeed: 3
   jumpHight: 5
   aiLos: {fileID: 8521480984259917028}
   jumpCooldown: 0.5
   AllowMove: 1
   sprite: {fileID: 6593308654783527240}
-  AllowFly: 0
+  AllowFly: 1
 --- !u!212 &6593308654783527240
 SpriteRenderer:
   serializedVersion: 3
@@ -181,8 +181,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthScript
   team: 0
-  Health: 40
-  MaxHealth: 40
+  Health: 15
+  MaxHealth: 15
   canTakeDamge: 1
 --- !u!114 &1485963703612628168
 MonoBehaviour:
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AILos
   CheckRadius: 10
-  Fov: 150
+  Fov: 360
   BlockLayer:
     serializedVersion: 2
     m_Bits: 72

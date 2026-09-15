@@ -4,8 +4,9 @@ using UnityEngine;
 public class PlayerHealthSpefic : MonoBehaviour
 {
     [SerializeField] HealthScript Health;
-    float LastHealth;
-    [SerializeField] float Time;
+    public float LastHealth;
+    [SerializeField] float TimeWithImunity;
+    float timer;
 
     void Start()
     {
@@ -14,17 +15,12 @@ public class PlayerHealthSpefic : MonoBehaviour
 
     void Update()
     {
-        if (Health.Health != LastHealth)
+        timer -= Time.deltaTime;
+        if (Health.Health < LastHealth)
         {
-            LastHealth = Health.Health;
-            StartCoroutine(ImunityFrames(Time));
+            timer = TimeWithImunity;
         }
-    }
-
-    IEnumerator ImunityFrames(float time)
-    {
-        Health.canTakeDamge = false;
-        yield return new WaitForSeconds(time);
-        Health.canTakeDamge = true;
+        Health.canTakeDamge = timer <= 0 ? true : false;
+        LastHealth = Health.Health;
     }
 }

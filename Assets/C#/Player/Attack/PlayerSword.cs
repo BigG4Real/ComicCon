@@ -182,7 +182,7 @@ public class PlayerSword : MonoBehaviour
     void OnFullAttack()
     {
         if (!player.isGrounded) { return; }
-        player.rb.simulated = false;
+        player.rb.constraints = RigidbodyConstraints2D.FreezeAll;
         isAttackingFull = true;
         FullAttackHitbox();
     }
@@ -190,7 +190,7 @@ public class PlayerSword : MonoBehaviour
     void OnAttackRelese()
     {
         isAttackingFull = false;
-        player.rb.simulated = true;
+        player.rb.constraints &= ~RigidbodyConstraints2D.FreezePosition;
     }
     #endregion
 
