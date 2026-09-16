@@ -3,23 +3,26 @@ using System.IO;
 using System.Collections.Generic;
 using System;
 using System.Linq;
-
+ 
 public class TimeSaveManager : MonoBehaviour
 {
     public string saveFilePath;
     public TimeData timeData;
+
+    public ChangeSaveLocationManager ChangeSaveLocationManager;
     
     void Start()
     {
-        saveFilePath = Path.Combine(Application.persistentDataPath, "time-records.json");
+        saveFilePath = ChangeSaveLocationManager.ChangeSaveLocation.SaveFolder;
 
-        LoadData(); 
+        LoadData();
     }
 
     void LoadData()
     {
         if (!File.Exists(saveFilePath))
         {
+            Debug.LogError($"{saveFilePath} Don't Exist");
             timeData = new TimeData();
             return;
         }
@@ -37,7 +40,7 @@ public class TimeSaveManager : MonoBehaviour
         {
             timeData.player = new List<TimeData.Player>();
         }
-        Debug.Log($"Load successful\nPath: {Application.persistentDataPath}/time-records.json\nFile:\n{json}");
+        Debug.Log($"Load successful\nPath: {saveFilePath}\nFile:\n{json}");
     }
 
     public void SaveTime(string name, float time)

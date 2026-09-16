@@ -34,11 +34,12 @@ public class LoadInAllPlayers : MonoBehaviour
 
     void UpdateText()
     {
-        saveLocation.text = $"Save to:\n{TimeSaveManager.saveFilePath.Replace(@"\", "/")}\n";
-    }
+        saveLocation.text = $"Save to:\n''{TimeSaveManager.ChangeSaveLocationManager.ChangeSaveLocation.SaveFolder.Replace(@"\", "/")}''\n\nTo chnage save location:\nGo to ''{TimeSaveManager.ChangeSaveLocationManager.saveFilePath.Replace(@"\", "/")}'' and change the json to disare location\nTip: Make a copy of the orginal json save file to the new place";
+    } 
 
     void Update()
     {
+        if(allPlayers.Count == 0) return;
         allPlayers[currentHoldingPlayer].data.select.enabled = true;
         if(currentHoldingPlayer > 0)
         {
