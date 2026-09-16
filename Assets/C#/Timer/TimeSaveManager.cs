@@ -2,6 +2,7 @@ using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class TimeSaveManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class TimeSaveManager : MonoBehaviour
     {
         saveFilePath = Path.Combine(Application.persistentDataPath, "time-records.json");
 
-        LoadData();
+        LoadData(); 
     }
 
     void LoadData()
@@ -36,7 +37,7 @@ public class TimeSaveManager : MonoBehaviour
         {
             timeData.player = new List<TimeData.Player>();
         }
-        Debug.Log("Load successful!\n" + json);
+        Debug.Log($"Load successful\nPath: {Application.persistentDataPath}/time-records.json\nFile:\n{json}");
     }
 
     public void SaveTime(string name, float time)
@@ -45,13 +46,23 @@ public class TimeSaveManager : MonoBehaviour
 
         InsertRecord(name, time);
 
+        SaveTime();
+    }
+
+    public void SaveTime()
+    {
+        timeData.player = timeData.player.OrderBy(td => td.Time).ToList();
         string jsonSave = JsonUtility.ToJson(timeData, true);
 
         File.WriteAllText(saveFilePath, jsonSave);
     }
 
-    public void InsertRecord(string name, float time)
+    public bool InsertRecord(string name, float time)
     {
+        for (int i = 0; i < timeData.InvalidNames.Count; i++)
+        {
+            if(name == timeData.InvalidNames[i]) return false;
+        }
         time = (float)Math.Round(time, 2);
         int nameLookUp = GetName(name);
         
@@ -59,13 +70,14 @@ public class TimeSaveManager : MonoBehaviour
         {
             TimeData.Player playerRecord = new TimeData.Player();
             playerRecord.Name = name;
-            playerRecord.Time = (playerRecord.Time > time) ? time : playerRecord.Time;
+            playerRecord.Time = time;
             timeData.player.Add(playerRecord);
         }
         else
         {
             timeData.player[nameLookUp].Time = time;
         }
+        return true;
     }
 
     public int GetName(string name)
@@ -78,5 +90,11 @@ public class TimeSaveManager : MonoBehaviour
             }
         }
         return -1;
+    }
+
+    public void RemoveRecord(int id) 
+    {
+        timeData.InvalidNames.Add(timeData.player[id].Name);
+        timeData.player.RemoveAt(id);
     }
 }

@@ -21,6 +21,11 @@ public class BasicEneamy : MonoBehaviour
     [SerializeField] Vector2 AttackAboveSize;
     [SerializeField] Vector2 AttackAboveOfset;
     int hitboxIDAbove;
+    [Header("Forward Attack")]
+    [SerializeField] AILos IsForward;
+    [SerializeField] Vector2 AttackForwardSize;
+    [SerializeField] Vector2 AttackForwardOfset;
+    int hitboxIDForward;
 
     [Header("Animation")]
     [SerializeField] Animator ani;
@@ -30,6 +35,7 @@ public class BasicEneamy : MonoBehaviour
     {
         hitboxIDCollider = hitbox.AddHitbox(SizeOfEneamy, new Vector2(), 6, false);
         hitboxIDAbove = hitbox.AddHitbox(AttackAboveSize, AttackAboveOfset, 6, false);
+        hitboxIDForward = hitbox.AddHitbox(AttackForwardSize, AttackForwardOfset, 6, false);
         RemoveAllHealth();
     }
 
@@ -45,9 +51,14 @@ public class BasicEneamy : MonoBehaviour
             }
         }
 
+        ani.SetBool("UpAttack", (IsAbove.Seeing.Count > 0));
         if(IsAbove.Seeing.Count > 0)
         {
             Invoke(nameof(AttackUp), 0.5f);
+        }
+        if(IsForward.Seeing.Count > 0)
+        {
+            Invoke(nameof(AttackForward), 0.5f);
         }
 
         hitbox.DealDamgeToAllColliders(hitboxIDCollider, 1, hitbox.GetAllColliders(hitboxIDCollider), HealthScript.TeamSystem.eneamy);
@@ -56,11 +67,19 @@ public class BasicEneamy : MonoBehaviour
 
     void AttackUp()
     {
-        ani.SetBool("UpAttack", (IsAbove.Seeing.Count > 0));
         if(!(IsAbove.Seeing.Count > 0)) return;
         hitbox.DealDamgeToAllColliders(hitboxIDAbove, 1, hitbox.GetAllColliders(hitboxIDAbove), HealthScript.TeamSystem.eneamy);
         hitbox.RemoveAllHealth(hitboxIDAbove);
-        StartCoroutine(hitbox.ActiveHitbox(hitboxIDAbove, 0.1f, 0));
+        StartCoroutine(hitbox.ActiveHitbox(hitboxIDAbove, 1f, 0));
+    }
+
+    void AttackForward()
+    {
+        ani.SetBool("ForwardAttack", (IsForward.Seeing.Count > 0));
+        if(!(IsForward.Seeing.Count > 0)) return;
+        hitbox.DealDamgeToAllColliders(hitboxIDForward, 1, hitbox.GetAllColliders(hitboxIDForward), HealthScript.TeamSystem.eneamy);
+        hitbox.RemoveAllHealth(hitboxIDForward);
+        StartCoroutine(hitbox.ActiveHitbox(hitboxIDForward, 1f, 0));
     }
 
     void RemoveAllHealth()

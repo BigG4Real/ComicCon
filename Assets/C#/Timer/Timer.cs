@@ -8,16 +8,16 @@ public class Timer : MonoBehaviour
     public float CurrentTime;
     [SerializeField] TimeSaveManager timeSaveManager;
     [SerializeField] TMP_Text StatsText;
-
+    
     void Update()
     {
-        CurrentTime += Time.unscaledDeltaTime;
+        CurrentTime += Time.deltaTime;
         StatsText.text = $"Time: {Math.Round(CurrentTime, 2)}s\nTop: {GetTop()} of {timeSaveManager.timeData.player.Count+1}";
     }
 
     int GetTop()
     {
-        int top = timeSaveManager.timeData.player.Count;
+        int top = 1;
         for (int i = 0; i < timeSaveManager.timeData.player.Count; i++)
         {
             if(timeSaveManager.timeData.player[i].Time < CurrentTime)

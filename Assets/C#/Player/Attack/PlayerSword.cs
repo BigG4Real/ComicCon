@@ -15,6 +15,7 @@ public class PlayerSword : MonoBehaviour
     [SerializeField] Vector2 attackHitBoxOffsetPogo;
     [SerializeField] float pogoBoost;
     bool pogo = false;
+    bool onlyOnePogo;
     int pogoAttackID;
 
     [Header("Up slash")]
@@ -33,6 +34,7 @@ public class PlayerSword : MonoBehaviour
     [Header("Small Attack")]
     [SerializeField] float hitboxAppearTime;
     [SerializeField] float smallAttackCooldown;
+
 
     [Header("Full Attack")]
     [SerializeField] float FullHitboxAppearTime;
@@ -68,7 +70,7 @@ public class PlayerSword : MonoBehaviour
                 hitboxManger.GetAllColliders(v.id),
                 HealthScript.TeamSystem.player,
                 Hit,
-                HitInvis
+                GiveKnockback
             );
         });
     }
@@ -78,23 +80,19 @@ public class PlayerSword : MonoBehaviour
         StartCoroutine(hitboxManger.ActiveHitbox(id, appearTime, cooldown));
         MakleSlashEffect(id);
     }
-
-    void HitInvis()
-    {
-        player.HowManyExtraJumps = 1;
-        if (pogo)
-        {
-            player.rb.linearVelocityY = 0;
-            player.GravityAmount = player.DefualtGravity;
-            player.rb.AddForce(Vector2.up * pogoBoost, ForceMode2D.Impulse);
-        }
-    }
     void Hit()
     {
         essence.GainEssence();
+        GiveKnockback();
+    }
+
+    void GiveKnockback()
+    {
+
         player.HowManyExtraJumps = 1;
-        if (pogo)
+        if (pogo && onlyOnePogo)
         {
+            onlyOnePogo = false;
             player.rb.linearVelocityY = 0;
             player.GravityAmount = player.DefualtGravity;
             player.rb.AddForce(Vector2.up * pogoBoost, ForceMode2D.Impulse);
@@ -138,7 +136,10 @@ public class PlayerSword : MonoBehaviour
         if (alreadyAttack) { return; }
 
         if (pogo)
+        {
             SpeficAttack(pogoAttackID);
+            onlyOnePogo = true;
+        }
         else if (upAttack)
             SpeficAttack(upAttackID);
         else
