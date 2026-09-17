@@ -10,26 +10,13 @@ public class Timer : MonoBehaviour
 
     void Start()
     {
-        Invoke(nameof(LoadScoreboard), 5);
+        Invoke(nameof(LoadScoreboard), 7);
     }
     
     void Update()
     {
         CurrentTime += Time.deltaTime;
-        StatsText.text = $"Time: {Math.Round(CurrentTime, 2)}s\nTop: {GetTop()} of {timeSaveManager.timeData.player.Count+1}";
-    }
-
-    int GetTop()
-    {
-        int top = 1;
-        for (int i = 0; i < timeSaveManager.timeData.player.Count; i++)
-        {
-            if(timeSaveManager.timeData.player[i].Time < CurrentTime)
-            {
-                top++;
-            }
-        }
-        return top;
+        StatsText.text = $"Time: {Math.Round(CurrentTime, 2)}s\nTop: {timeSaveManager.GetTop(CurrentTime)} of {timeSaveManager.timeData.player.Count+1}";
     }
 
     void LoadScoreboard()

@@ -64,7 +64,11 @@ public class TimeSaveManager : MonoBehaviour
     {
         for (int i = 0; i < timeData.InvalidNames.Count; i++)
         {
-            if(name == timeData.InvalidNames[i]) return false;
+            if(name == timeData.InvalidNames[i]) 
+            {
+                Debug.Log("Invalid Name");
+                return false;
+            }
         }
         time = (float)Math.Round(time, 2);
         int nameLookUp = GetName(name);
@@ -76,7 +80,7 @@ public class TimeSaveManager : MonoBehaviour
             playerRecord.Time = time;
             timeData.player.Add(playerRecord);
         }
-        else
+        else if (timeData.player[nameLookUp].Time > time)
         {
             timeData.player[nameLookUp].Time = time;
         }
@@ -99,5 +103,18 @@ public class TimeSaveManager : MonoBehaviour
     {
         timeData.InvalidNames.Add(timeData.player[id].Name);
         timeData.player.RemoveAt(id);
+    }
+
+    public int GetTop(float time)
+    {
+        int top = 1;
+        for (int i = 0; i < timeData.player.Count; i++)
+        {
+            if(timeData.player[i].Time < time)
+            {
+                top++;
+            }
+        }
+        return top;
     }
 }
