@@ -6,7 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: 8b0b4e6a15d66b24d8d001dafc337d48
+  - enabled: 1
     path: Assets/Scenes/Map.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Scoreboard.unity
+    guid: 6f6dc8e05d7a49448a772715e1e3456d
+  - enabled: 1
+    path: Assets/Scenes/DebugMode.unity
+    guid: 65fc3654321326f4eaa8ccbc4878947a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

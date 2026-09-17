@@ -710,7 +710,7 @@ SpriteRenderer:
   m_SortingOrder: 8
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 947a1ddb7b332ad468c70995edaf3b7d, type: 3}
-  m_Color: {r: 0.3433962, g: 0.3433962, b: 0.3433962, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.07450981}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -754,7 +754,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 769.05, y: 463.5196}
+  m_AnchoredPosition: {x: 744.49994, y: 463.5196}
   m_SizeDelta: {x: 381.91, y: 79.0979}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2473579488517295734
@@ -2954,6 +2954,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4699704718892214425}
+  - component: {fileID: 3051000707485546022}
   - component: {fileID: 3283572438252081514}
   - component: {fileID: 5503152505633657342}
   m_Layer: 0
@@ -2979,6 +2980,22 @@ Transform:
   - {fileID: 7296348330619567313}
   m_Father: {fileID: 371649461235665741}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3051000707485546022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5943120421203464212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2cb0d8d917568625be1933bf3046739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeSaveLocationManager
+  saveFilePath: 
+  ChangeSaveLocation:
+    SaveFolder: 
+  TimeSaveManager: {fileID: 3283572438252081514}
 --- !u!114 &3283572438252081514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2994,6 +3011,8 @@ MonoBehaviour:
   saveFilePath: 
   timeData:
     player: []
+    InvalidNames: []
+  ChangeSaveLocationManager: {fileID: 3051000707485546022}
 --- !u!114 &5503152505633657342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3006,7 +3025,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51dc22275203b4f4b26cdd365a3172a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
-  Name: TestUser10
   CurrentTime: 0
   timeSaveManager: {fileID: 3283572438252081514}
   StatsText: {fileID: 2332755958814943600}
@@ -3093,7 +3111,7 @@ SpriteRenderer:
   m_SortingOrder: 9
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 947a1ddb7b332ad468c70995edaf3b7d, type: 3}
-  m_Color: {r: 1, g: 0.41960788, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.41960788, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

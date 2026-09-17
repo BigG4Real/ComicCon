@@ -13,7 +13,7 @@ public class TimeSaveManager : MonoBehaviour
     
     void Start()
     {
-        saveFilePath = ChangeSaveLocationManager.ChangeSaveLocation.SaveFolder;
+        saveFilePath = ChangeSaveLocationManager.GetDataDiractory();
 
         LoadData();
     }

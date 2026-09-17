@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    public string Name;
     public float CurrentTime;
     [SerializeField] TimeSaveManager timeSaveManager;
     [SerializeField] TMP_Text StatsText;
+
+    void Start()
+    {
+        Invoke(nameof(LoadScoreboard), 5);
+    }
     
     void Update()
     {
@@ -28,9 +32,8 @@ public class Timer : MonoBehaviour
         return top;
     }
 
-    void Save()
+    void LoadScoreboard()
     {
-        GetComponent<TimeSaveManager>().SaveTime(Name, CurrentTime);        
-        enabled = false;
+        GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<LoadInScoreboardScene>().LoadInScene(CurrentTime); 
     }
 }

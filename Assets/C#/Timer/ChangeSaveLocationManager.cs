@@ -10,13 +10,13 @@ public class ChangeSaveLocationManager : MonoBehaviour
 
     void Start()
     {
-        saveFilePath = Path.Combine(Application.persistentDataPath, "save-location.json");
         GetDataDiractory();
         SaveNewDiractory();
     }
 
     public string GetDataDiractory()
     {
+        saveFilePath = Path.Combine(Application.persistentDataPath, "save-location.json");
         if (!File.Exists(saveFilePath))
         {
             ChangeSaveLocation = new ChangeSaveLocation();
