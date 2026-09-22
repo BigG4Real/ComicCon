@@ -24,6 +24,7 @@ public class BossSpawn : MonoBehaviour
     void StartBoss()
     {
         PlayerCamera.focusPoints.Add(Middle);
+        PlayerCamera.focusPoints.Add(Boss);
         enabled = false;
     }
 }
