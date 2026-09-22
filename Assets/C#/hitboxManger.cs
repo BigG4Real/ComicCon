@@ -66,15 +66,19 @@ public class hitboxManger : MonoBehaviour
         hitboxes[index] = tempHitbox;
     }
 
-    public Collider2D[] GetAllColliders(int index)
+    public Collider2D[] GetAllColliders(int index, int layerMask = -1)
     {
         Collider2D[] colliders;
 
+        int flip = 1;
+        if(lookingDir != null)
+            flip = lookingDir.flipX ? -1 : 1;
+
         Vector2 hitboxPos = new Vector2(
-            transform.position.x + hitboxes[index].Offset.x * transform.localScale.x * (lookingDir.flipX ? -1 : 1),
+            transform.position.x + hitboxes[index].Offset.x * transform.localScale.x * flip,
             transform.position.y + hitboxes[index].Offset.y * transform.localScale.y
         );
-        colliders = Physics2D.OverlapBoxAll(hitboxPos, hitboxes[index].Size * transform.localScale, 0);
+        colliders = Physics2D.OverlapBoxAll(hitboxPos, hitboxes[index].Size * transform.localScale, 0, layerMask);
 
         return colliders;
     }
@@ -171,10 +175,11 @@ public class hitboxManger : MonoBehaviour
 #if UNITY_EDITOR
     void OnDrawGizmos()
     {
-        if (lookingDir == null) return;
         Gizmos.color = Color.red;
+        int flip = 1;
+        if (lookingDir != null)
+            flip = lookingDir.flipX ? -1 : 1;
 
-        int flip = lookingDir.flipX ? -1 : 1;
         for (int i = 0; i < hitboxes.Count; i++)
         {
             Vector2 hitboxPos = new Vector2(

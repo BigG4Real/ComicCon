@@ -14,7 +14,7 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] Vector3 velocity = new Vector3(0,0,0);
 
     [Header("Focus Point")]
-    [SerializeField] List<Transform> focusPoints;
+    public List<Transform> focusPoints;
     Vector2 pointToFollow;
     void Update()
     {

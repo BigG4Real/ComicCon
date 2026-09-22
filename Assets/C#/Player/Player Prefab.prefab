@@ -2617,8 +2617,8 @@ MonoBehaviour:
   upSpeed: 15
   timeBeforeFall: 0.25
   downSpeed: 40
-  hitBoxSize: {x: 2, y: 1.5}
-  offSet: {x: 0, y: -0.75}
+  hitBoxSize: {x: 2, y: 3}
+  offSet: {x: 0, y: -1.5}
   minDmgAmount: 10
   maxDmgAmount: 70
   dmgScaleAmount: 2.3
