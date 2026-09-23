@@ -22,6 +22,8 @@ public class screenKeyboard : MonoBehaviour
 
     [SerializeField] TMP_Text scoreBoardDisplay;
     [SerializeField] TimeSaveManager TimeSaveManager;
+    bool OnlyOneMove = true;
+    Vector2 lastMove;
     void Start()
     {
         for (int i = 0; i < value.Count; i++)
@@ -56,8 +58,13 @@ public class screenKeyboard : MonoBehaviour
     
     void OnKeyboardScreenMove(InputValue inputValue)
     {
+        if(!OnlyOneMove) {OnlyOneMove = true; return;}
         Vector2 dir = inputValue.Get<Vector2>();
-        if(dir.y != 0)
+        dir = LegitMove(dir);
+        if(lastMove == dir) return;
+        lastMove = dir;
+        Debug.Log(dir);
+        if(dir.y != 0 && OnlyOneMove)
         {
             selectedKey += (int)(value.Count/4 * dir.y * -1);
 
@@ -70,8 +77,29 @@ public class screenKeyboard : MonoBehaviour
                 selectedKey +=value.Count;
             }
         }
-        selectedKey += (int)dir.x;
+        else if(OnlyOneMove)
+            selectedKey += (int)dir.x;
         selectedKey = Math.Clamp(selectedKey, 0, AllKeys.Count-1);
+    }
+
+    Vector2 LegitMove(Vector2 dir)
+    {
+        float deadZone = 0.2f;
+        
+        if(dir.x >= -deadZone && dir.x <= deadZone)
+        {
+            dir.x = 0;
+        }
+        else if(dir.x >= deadZone){dir.x = 1;}
+        else if(dir.x <= -deadZone){dir.x = -1;}
+
+        if(dir.y >= -deadZone && dir.y <= deadZone)
+        {
+            dir.y = 0;
+        }
+        else if(dir.y >= deadZone){dir.y = 1;}
+        else if(dir.y <= -deadZone){dir.y = -1;}
+        return dir;
     }
 
     void OnSelect()

@@ -1504,7 +1504,7 @@
                     "type": "Value",
                     "id": "9a2f3dfe-8f5a-4bf1-8ea2-5b916be9ac07",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "interactions": "",
                     "initialStateCheck": true,
                     "priority": 0
@@ -1558,6 +1558,28 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
+                    "action": "KeyboardScreenMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b2b32cd5-0ca3-4c3b-a53f-a1d0c97e039e",
+                    "path": "<XRController>/{Primary2DAxis}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XR",
+                    "action": "KeyboardScreenMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5154bd03-d696-49a1-ad7b-5379b1fbd20e",
+                    "path": "<Joystick>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
                     "action": "KeyboardScreenMove",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1663,30 +1685,19 @@
                 },
                 {
                     "name": "",
-                    "id": "63f861e1-1fce-47a5-8c35-92ff3e9ee5f6",
-                    "path": "<XRController>/{Primary2DAxis}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "XR",
-                    "action": "KeyboardScreenMove",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "085d250c-e5ed-4b72-9197-f51e6bcbe635",
-                    "path": "<Joystick>/stick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick",
-                    "action": "KeyboardScreenMove",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "e37b94c3-3a5d-4a73-9586-7270de93b3e5",
                     "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "23e0e5de-64cd-4d98-bd56-471c0946133d",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
@@ -1707,6 +1718,17 @@
                 },
                 {
                     "name": "",
+                    "id": "7b8b6f35-a08f-4190-90bf-340a5c5d38dc",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Remove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "9a470f28-0a43-4a90-aaa4-d9051a18b1c4",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -1718,8 +1740,30 @@
                 },
                 {
                     "name": "",
+                    "id": "e1587399-ab61-4c69-b0dd-9a94b910ec77",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Space",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e91a59b3-01ec-4353-828d-bd5a3a89287c",
                     "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Done",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "530e340f-a839-4b0b-9026-045123cc3095",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
