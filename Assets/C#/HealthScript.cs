@@ -32,12 +32,15 @@ public class HealthScript : MonoBehaviour
         if (canTakeDamge && !IsSameTeam(attacker))
         {
             Health -= damgeAmount;
+            TookDmg();
         }
         if (Health <= 0)
         {
             Death();
         }
     }
+
+    public virtual void TookDmg() {}
 
     public virtual void Death()
     {

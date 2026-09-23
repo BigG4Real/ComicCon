@@ -2275,7 +2275,6 @@ GameObject:
   - component: {fileID: 8856688836659063887}
   - component: {fileID: 1629912335688011574}
   - component: {fileID: 563807044833384036}
-  - component: {fileID: 5130134268440845696}
   - component: {fileID: 454676236896264633}
   - component: {fileID: 6911100362369245062}
   - component: {fileID: 8268903269260594675}
@@ -2503,22 +2502,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.20395565}
   m_Size: {x: 1, y: 1.4079113}
   m_Direction: 0
---- !u!114 &5130134268440845696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5767500592966854926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2175138dc804fe6488094d0be41e9312, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HealthScript
-  team: 1
-  Health: 5
-  MaxHealth: 0
-  canTakeDamge: 1
 --- !u!114 &454676236896264633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2531,8 +2514,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a6f6ef1b7fb5674084bbb1d803b0f84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthSpefic
-  Health: {fileID: 5130134268440845696}
-  LastHealth: 0
+  team: 1
+  Health: 5
+  MaxHealth: 0
+  canTakeDamge: 1
   TimeWithImunity: 0.75
 --- !u!114 &6911100362369245062
 MonoBehaviour:
@@ -2572,7 +2557,7 @@ MonoBehaviour:
   attackHitBoxOffsetUpSlash: {x: 0, y: 1.2}
   player: {fileID: 8856688836659063887}
   essence: {fileID: 4447765588372642704}
-  attacker: {fileID: 5130134268440845696}
+  attacker: {fileID: 454676236896264633}
   dmg: 5
   hitboxAppearTime: 0.25
   smallAttackCooldown: 0.3
@@ -2641,7 +2626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1fd1e1fedd7de54ab757db66a5b801c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealAbility
-  health: {fileID: 5130134268440845696}
+  health: {fileID: 454676236896264633}
   healAmount: 1
   healCooldown: 0.2
   player: {fileID: 8856688836659063887}
@@ -2674,7 +2659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b5ac947dedd3f442b9e68d2da222218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpdateHealthUI
-  HealthScript: {fileID: 5130134268440845696}
+  HealthScript: {fileID: 454676236896264633}
   HealthSlider: {fileID: 83268154085309502}
   Hearts:
   - {fileID: 1738613631613061270}

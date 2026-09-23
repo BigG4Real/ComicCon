@@ -1,26 +1,25 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerHealthSpefic : MonoBehaviour
+public class PlayerHealthSpefic : HealthScript
 {
-    [SerializeField] HealthScript Health;
-    public float LastHealth;
     [SerializeField] float TimeWithImunity;
     float timer;
 
-    void Start()
+    public override void TookDmg()
     {
-        LastHealth = Health.Health;
+        timer = TimeWithImunity;
+    }
+
+    public override void Death()
+    {
+        SceneManager.LoadScene("Start");
     }
 
     void Update()
     {
         timer -= Time.deltaTime;
-        if (Health.Health < LastHealth)
-        {
-            timer = TimeWithImunity;
-        }
-        Health.canTakeDamge = timer <= 0 ? true : false;
-        LastHealth = Health.Health;
+        canTakeDamge = timer <= 0 ? true : false;
     }
 }
