@@ -2599,6 +2599,7 @@ MonoBehaviour:
   dmgAmount: 30
   HitboxApperTime: 0.1
   Cooldown: 0.25
+  LaserVisule: {fileID: 8779358681520715543, guid: aadd6b013c04dd169932a382180008ca, type: 3}
   hitboxManger: {fileID: 5900881545673626}
 --- !u!114 &5302119895567462310
 MonoBehaviour:

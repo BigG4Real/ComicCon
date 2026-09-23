@@ -22,7 +22,7 @@ public class hitboxManger : MonoBehaviour
         public List<HealthScript> FoundedHealths = new List<HealthScript>();
     }
     public List<Hitbox> hitboxes;
-    [SerializeField] SpriteRenderer lookingDir;
+    public SpriteRenderer lookingDir;
     
     public void RemoveAllHealth(int index) => hitboxes[index].FoundedHealths.Clear();
 

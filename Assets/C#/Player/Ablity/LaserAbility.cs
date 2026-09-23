@@ -16,6 +16,7 @@ public class LaserAbility : MonoBehaviour
     [SerializeField] float dmgAmount;
     [SerializeField] float HitboxApperTime;
     [SerializeField] float Cooldown;
+    [SerializeField] GameObject LaserVisule;
     [Header("Hitbox manager")]
     [SerializeField] hitboxManger hitboxManger;
     int hitboxID;
@@ -40,6 +41,11 @@ public class LaserAbility : MonoBehaviour
             if(hitboxManger.hitboxes[hitboxID].FoundedHealths.Count > 0) hitboxManger.RemoveAllHealth(hitboxID);
             
             StartCoroutine(hitboxManger.ActiveHitbox(hitboxID, HitboxApperTime, Cooldown));
+            
+            GameObject laser = Instantiate(LaserVisule);
+            int flip = hitboxManger.lookingDir.flipX ? -1 : 1;
+            laser.transform.position = new Vector2(transform.position.x + (offSet.x * flip), transform.position.y + (offSet.y * flip));
+            Destroy(laser, HitboxApperTime);
         }
     }
 

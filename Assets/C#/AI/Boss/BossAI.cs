@@ -8,6 +8,7 @@ public class BossAI : MonoBehaviour
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] AIMovement ai;
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] Collider2D Hitbox;
     
     [Header("DMG collider")]
     [SerializeField] hitboxManger hitbox;
@@ -18,24 +19,55 @@ public class BossAI : MonoBehaviour
     [SerializeField] float PushForward;
     [SerializeField] float RollTime;
     [SerializeField] List<TrailRenderer> trails;
-    [SerializeField] Vector2 RandomWaitTime;
     bool isRolling;
+    [Header("Underground Attack")]
+    [SerializeField] float TimeBeforeDig;
+    [SerializeField] float DigTime;
+    [SerializeField] Transform RespawnAfterDig;
+    [SerializeField] Vector2 PositionRocksSpawn;
+    [SerializeField] Vector2 SizeOfRocksSpawn;
+    [SerializeField] Vector2 SpawnTimeForRock;
+    [SerializeField] GameObject RockPrefab;
+    bool didDig;
+    public bool isDigging {get; private set;}
 
+    
     [Header("Animation")]
     [SerializeField] Animator ani;
+    [SerializeField] Vector2 RandomWaitTimeAttacks;
 
 
     void Start()
     {
         hitboxIDCollider = hitbox.AddHitbox(SizeOfEneamy, new Vector2(), 6, false);
         RemoveAllHealth();
-        
-        StartCoroutine(RollActive(Random.Range(RandomWaitTime.x, RandomWaitTime.y)));
+        GenerateAttack();
+    }
+
+    void GenerateAttack()
+    {
+        float random = Random.Range(RandomWaitTimeAttacks.x, RandomWaitTimeAttacks.y);
+        int randomAttack = Random.Range(1, 3);
+        if(didDig || randomAttack == 1)
+        {
+            StartCoroutine(RollActive(random));
+            random += TimeBeforeDig + DigTime;
+            didDig = false;
+        }
+        if(randomAttack == 2)
+        {
+            StartCoroutine(DigActive(random));
+            random += RollTime + TimeBeforeRoll;
+            didDig = true;
+        }
+        Invoke(nameof(GenerateAttack), random);
     }
 
     void Update()
     {
-        hitbox.DealDamgeToAllColliders(hitboxIDCollider, 2, hitbox.GetAllColliders(hitboxIDCollider), HealthScript.TeamSystem.eneamy);
+        if(!isDigging)
+            hitbox.DealDamgeToAllColliders(hitboxIDCollider, 2, hitbox.GetAllColliders(hitboxIDCollider), HealthScript.TeamSystem.eneamy);
+        
         StartCoroutine(hitbox.ActiveHitbox(hitboxIDCollider, 999, 0));
 
         if(isRolling)
@@ -61,7 +93,7 @@ public class BossAI : MonoBehaviour
         yield return new WaitForSeconds(RollTime);
         SetState(false);
         rb.angularDamping = 0.05f;
-        StartCoroutine(RollActive(Random.Range(RandomWaitTime.x, RandomWaitTime.y)));
+
         void SetState(bool state)
         {
             for (int i = 0; i < trails.Count; i++)
@@ -75,11 +107,50 @@ public class BossAI : MonoBehaviour
     }
 
 
+    IEnumerator DigActive(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        ani.SetBool("Dig", true);
+        ai.AllowMoveTo(false);
+        yield return new WaitForSeconds(TimeBeforeDig);
+        SetState(true);
+        RockSpawn();
+        yield return new WaitForSeconds(DigTime);
+        transform.position = RespawnAfterDig.position;
+        SetState(false);
+
+        void SetState(bool state)
+        {
+            rb.simulated = !state;
+            Hitbox.enabled = !state;
+            ani.SetBool("Dig", state);
+            isDigging = state;
+            ai.AllowMoveTo(!state);
+        }
+    }
+
+    void RockSpawn()
+    {
+        GameObject rock = RockPrefab;
+        Instantiate(rock);
+        rock.transform.position = new Vector2(PositionRocksSpawn.x + (Random.Range(-SizeOfRocksSpawn.x, SizeOfRocksSpawn.x)/2), PositionRocksSpawn.y + (Random.Range(-SizeOfRocksSpawn.y, SizeOfRocksSpawn.y))/2);
+
+        if (isDigging)
+        {
+            Invoke(nameof(RockSpawn), Random.Range(SpawnTimeForRock.x, SpawnTimeForRock.y));
+        }
+    }
 
     void RemoveAllHealth()
     {
         hitbox.RemoveAllHealth(hitboxIDCollider);
         Invoke(nameof(RemoveAllHealth), 0.3f);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(PositionRocksSpawn, SizeOfRocksSpawn);
     }
 
 }

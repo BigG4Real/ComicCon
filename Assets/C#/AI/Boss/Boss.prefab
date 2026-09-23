@@ -122,14 +122,14 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 0.0038833618
         value: 0
-        inSlope: 0.8485202
-        outSlope: 0.8485202
+        inSlope: 0.53264326
+        outSlope: 0.53264326
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.124867156
+        outWeight: 0.12670578
       - serializedVersion: 3
         time: 1
         value: 0
@@ -577,12 +577,12 @@ TrailRenderer:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 0.8485202
-        outSlope: 0.8485202
+        inSlope: 1.0819328
+        outSlope: 1.0819328
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.124867156
+        outWeight: 0.06990291
       - serializedVersion: 3
         time: 1
         value: 0
@@ -687,7 +687,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 72
   Seeing: []
-  SeeingTimeAmount: 9
+  SeeingTimeAmount: 99999
 --- !u!1 &7372516385528810516
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,12 +780,12 @@ TrailRenderer:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 0.8485202
-        outSlope: 0.8485202
+        inSlope: 0.7637173
+        outSlope: 0.7637173
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.124867156
+        outWeight: 0.099029124
       - serializedVersion: 3
         time: 1
         value: 0
@@ -962,7 +962,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1.5
+  m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: dcd3126cc94028b41aad4e8da81d7d5a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1143,19 +1143,27 @@ MonoBehaviour:
   sprite: {fileID: 3424773703303690384}
   ai: {fileID: 8306236430826920998}
   rb: {fileID: 4270627454243869608}
+  Hitbox: {fileID: 7590701969731221031}
   hitbox: {fileID: 1381429290718726965}
   SizeOfEneamy: {x: 2, y: 1.25}
   TimeBeforeRoll: 0.75
   PushForward: 17.5
-  RollTime: 10
+  RollTime: 6
   trails:
   - {fileID: 9114720717903565172}
   - {fileID: 6224072820762255094}
   - {fileID: 5005966449069552997}
   - {fileID: 898779206598879031}
   - {fileID: 8317779426420147076}
-  RandomWaitTime: {x: 5, y: 10}
+  TimeBeforeDig: 1
+  DigTime: 2
+  RespawnAfterDig: {fileID: 0}
+  PositionRocksSpawn: {x: 126.5, y: 50.1}
+  SizeOfRocksSpawn: {x: 23.5, y: 0}
+  SpawnTimeForRock: {x: 0.15, y: 0.25}
+  RockPrefab: {fileID: 5136633330113627293, guid: da86d550e58cb7506acb81c708d68e72, type: 3}
   ani: {fileID: 5349393192071399542}
+  RandomWaitTimeAttacks: {x: 4.75, y: 5.25}
 --- !u!1001 &4165184862248290082
 PrefabInstance:
   m_ObjectHideFlags: 0
