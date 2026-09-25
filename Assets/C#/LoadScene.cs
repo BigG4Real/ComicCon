@@ -30,8 +30,8 @@ public class LoadScene : MonoBehaviour
 
     void OnAButtonLoad() => Action(AButtonLoad, AButtonDown, AButtonObjChange);    
     void OnBButtonLoad()=> Action(BButtonLoad, BButtonDown, BButtonObjChange);
-    void OnYButton() =>Action(YButtonLoad, YButtonDown, YButtonObjChange);
-    void OnXButton() =>Action(XButtonLoad, XButtonDown, XButtonObjChange);
+    void OnYButtonLoad() =>Action(YButtonLoad, YButtonDown, YButtonObjChange);
+    void OnXButtonLoad() =>Action(XButtonLoad, XButtonDown, XButtonObjChange);
 
     void OnStart() =>Action(StartButtonLoad, StartButtonDown, StartButtonObjChange);
     void OnSelect() =>Action(SelectButtonLoad, SelectButtonDown, SelectButtonObjChange);

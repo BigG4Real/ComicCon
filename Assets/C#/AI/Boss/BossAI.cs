@@ -48,17 +48,17 @@ public class BossAI : MonoBehaviour
     {
         float random = Random.Range(RandomWaitTimeAttacks.x, RandomWaitTimeAttacks.y);
         int randomAttack = Random.Range(1, 3);
-        if(didDig || randomAttack == 1)
-        {
-            StartCoroutine(RollActive(random));
-            random += TimeBeforeDig + DigTime;
-            didDig = false;
-        }
-        if(randomAttack == 2)
+        if(!didDig && randomAttack == 1)
         {
             StartCoroutine(DigActive(random));
-            random += RollTime + TimeBeforeRoll;
+            random += TimeBeforeDig + DigTime;
             didDig = true;
+        }
+        else
+        {
+            StartCoroutine(RollActive(random));
+            random += RollTime + TimeBeforeRoll;
+            didDig = false;
         }
         Invoke(nameof(GenerateAttack), random);
     }
@@ -110,10 +110,10 @@ public class BossAI : MonoBehaviour
     IEnumerator DigActive(float wait)
     {
         yield return new WaitForSeconds(wait);
-        ani.SetBool("Dig", true);
-        ai.AllowMoveTo(false);
-        yield return new WaitForSeconds(TimeBeforeDig);
         SetState(true);
+        isDigging = false;
+        yield return new WaitForSeconds(TimeBeforeDig);
+        isDigging = true;
         RockSpawn();
         yield return new WaitForSeconds(DigTime);
         transform.position = RespawnAfterDig.position;

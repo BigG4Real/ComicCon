@@ -39,7 +39,11 @@ public class MovementController : MonoBehaviour
     [SerializeField] SpriteRenderer[] playerVisule;
     [SerializeField] Transform[] lights;
 
-    
+    void Start()
+    {
+        Time.timeScale = 1;
+    }
+
     void Update()
     {
         GroundCheck();
