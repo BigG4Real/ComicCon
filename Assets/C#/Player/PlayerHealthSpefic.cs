@@ -14,7 +14,7 @@ public class PlayerHealthSpefic : HealthScript
 
     public override void Death()
     {
-        SceneManager.LoadScene("Start");
+        SceneManager.LoadScene("Map");
     }
 
     void Update()

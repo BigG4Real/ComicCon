@@ -63,7 +63,6 @@ public class screenKeyboard : MonoBehaviour
         dir = LegitMove(dir);
         if(lastMove == dir) return;
         lastMove = dir;
-        Debug.Log(dir);
         if(dir.y != 0 && OnlyOneMove)
         {
             selectedKey += (int)(value.Count/4 * dir.y * -1);
