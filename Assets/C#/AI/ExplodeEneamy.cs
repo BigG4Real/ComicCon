@@ -13,6 +13,7 @@ public class ExplodeEneamy : HealthScript
 
     [SerializeField] List<Collider2D> eneamyPartsCollider = new List<Collider2D>();
     [SerializeField] List<Rigidbody2D> eneamyPartsRb = new List<Rigidbody2D>();
+
     public override void Death()
     {
         for (int i = 0; i < scripts.Count; i++)

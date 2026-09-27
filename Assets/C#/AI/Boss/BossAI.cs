@@ -66,7 +66,7 @@ public class BossAI : MonoBehaviour
     void Update()
     {
         if(Hitbox.enabled)
-            hitbox.DealDamgeToAllColliders(hitboxIDCollider, 2, hitbox.GetAllColliders(hitboxIDCollider), HealthScript.TeamSystem.eneamy);
+            hitbox.DealDamgeToAllColliders(hitboxIDCollider, 1, hitbox.GetAllColliders(hitboxIDCollider), HealthScript.TeamSystem.eneamy);
         
         StartCoroutine(hitbox.ActiveHitbox(hitboxIDCollider, 999, 0));
 

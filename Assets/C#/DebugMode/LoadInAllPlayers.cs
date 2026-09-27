@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LoadInAllPlayers : MonoBehaviour
@@ -80,6 +81,11 @@ public class LoadInAllPlayers : MonoBehaviour
         Debug.Log("Deleted succes");
         TimeSaveManager.SaveTime();
         RemoveAllPlayer();
+    }
+    
+    void OnBack()
+    {
+        SceneManager.LoadScene("Start");
     }
 
     void LoadIn()

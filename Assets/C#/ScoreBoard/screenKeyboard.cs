@@ -83,7 +83,7 @@ public class screenKeyboard : MonoBehaviour
 
     Vector2 LegitMove(Vector2 dir)
     {
-        float deadZone = 0.2f;
+        float deadZone = 0.85f;
         
         if(dir.x >= -deadZone && dir.x <= deadZone)
         {

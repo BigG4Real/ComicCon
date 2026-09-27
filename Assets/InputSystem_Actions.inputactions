@@ -854,6 +854,16 @@
                     "interactions": "",
                     "initialStateCheck": false,
                     "priority": 0
+                },
+                {
+                    "name": "Back",
+                    "type": "Button",
+                    "id": "f11538d2-147a-4bac-b1c3-5ab0cf785ea4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -964,6 +974,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Delet",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f6a010c7-e5ee-40c6-996f-58309ceefdfa",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Delet",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b1a30a56-f51d-4144-828e-7fadb0d1a077",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e28b6602-b025-40d2-92fb-08e699d66249",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1092,6 +1135,17 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "up",
+                    "id": "1ee06105-18bf-47d3-9772-b73953b4ba91",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "KeyboardScreenMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "down",
                     "id": "a961505a-d4c4-49ca-8f5e-bcb51bc52901",
                     "path": "<Keyboard>/s",
@@ -1109,6 +1163,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
+                    "action": "KeyboardScreenMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "9fdf579d-1cce-4d61-8302-ae6c58f37b48",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
                     "action": "KeyboardScreenMove",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -1136,6 +1201,17 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "left",
+                    "id": "45f85e3e-e527-408c-b858-e374244f21b6",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "KeyboardScreenMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "right",
                     "id": "cee1bc38-a159-4891-8fa8-86046587dc01",
                     "path": "<Keyboard>/d",
@@ -1153,6 +1229,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
+                    "action": "KeyboardScreenMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "3ea4998c-405c-4ec4-b86e-15b4daeb921a",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
                     "action": "KeyboardScreenMove",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -1257,7 +1344,7 @@
                     "id": "dda00bba-0dac-4879-b654-d4723c748803",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false,
                     "priority": 0
                 },
@@ -1267,7 +1354,7 @@
                     "id": "63334c5e-a646-4d0d-979d-bafb760c88ae",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false,
                     "priority": 0
                 },
@@ -1277,7 +1364,7 @@
                     "id": "0a80d819-fb3e-47a9-9270-b08d73e34482",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false,
                     "priority": 0
                 },
@@ -1287,7 +1374,7 @@
                     "id": "e7e7f3ba-6a21-4b6d-b89f-1ee3d2a4e467",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false,
                     "priority": 0
                 },
@@ -1297,7 +1384,7 @@
                     "id": "d2904f7d-5874-4920-a6ad-b498cf4c1898",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "MultiTap(tapCount=15)",
                     "initialStateCheck": false,
                     "priority": 0
                 },
@@ -1307,7 +1394,7 @@
                     "id": "ecb06f73-d212-48e7-aab1-20a177dc050e",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "MultiTap(tapCount=15)",
                     "initialStateCheck": false,
                     "priority": 0
                 }
@@ -1405,6 +1492,17 @@
                     "name": "",
                     "id": "6316f8f5-fd65-4e13-b176-8647b8fdc582",
                     "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "184cb851-487f-4677-9099-eb5ddf958a4d",
+                    "path": "<Keyboard>/1",
                     "interactions": "Hold(duration=5)",
                     "processors": "",
                     "groups": "",
@@ -1416,7 +1514,18 @@
                     "name": "",
                     "id": "414100f1-d511-4eda-8688-6170f3160211",
                     "path": "<Gamepad>/start",
-                    "interactions": "Hold(duration=5,pressPoint=1.401298E-45)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "44e88021-c3f3-4a8e-967b-60d40be336aa",
+                    "path": "<Keyboard>/0",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Start",
