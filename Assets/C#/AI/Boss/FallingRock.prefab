@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 5136633330113627293}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 118.86722, y: 50.1, z: 0}
+  m_LocalPosition: {x: 123.55377, y: 50.1, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -86,8 +86,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 907180060966303384, guid: 3a020e9643865a2efa0418757b9bfa4a, type: 3}
+  m_Color: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RocksFromAbove
   hitboxManger: {fileID: 8114557856134770822}
+  rotateSpeed: 240
 --- !u!114 &8114557856134770822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,4 +203,4 @@ MonoBehaviour:
   team: 0
   Health: 5
   MaxHealth: 5
-  canTakeDamge: 1
+  canTakeDamge: 0
