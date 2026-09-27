@@ -130,7 +130,7 @@ public class screenKeyboard : MonoBehaviour
     }
     void OnDone()
     {
-        if(TimeSaveManager.InsertRecord(Name, GameObject.FindWithTag("Scoreboard").GetComponent<LoadInScoreboardScene>().Time))
+        if(!string.IsNullOrEmpty(Name) && TimeSaveManager.InsertRecord(Name, GameObject.FindWithTag("Scoreboard").GetComponent<LoadInScoreboardScene>().Time))
         {
             TimeSaveManager.SaveTime(Name, GameObject.FindWithTag("Scoreboard").GetComponent<LoadInScoreboardScene>().Time);
             scoreBoardDisplay.text = $"Top {TimeSaveManager.GetName(Name)+1}: {Name}: {Math.Round(GameObject.FindWithTag("Scoreboard").GetComponent<LoadInScoreboardScene>().Time, 2)}s";

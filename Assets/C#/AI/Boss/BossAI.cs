@@ -48,7 +48,7 @@ public class BossAI : MonoBehaviour
     {
         float random = Random.Range(RandomWaitTimeAttacks.x, RandomWaitTimeAttacks.y);
         int randomAttack = Random.Range(1, 3);
-        if(!didDig && randomAttack == 1)
+        if(!didDig && RespawnAfterDig != null && randomAttack == 1)
         {
             StartCoroutine(DigActive(random));
             random += TimeBeforeDig + DigTime;
@@ -65,7 +65,7 @@ public class BossAI : MonoBehaviour
 
     void Update()
     {
-        if(!isDigging)
+        if(Hitbox.enabled)
             hitbox.DealDamgeToAllColliders(hitboxIDCollider, 2, hitbox.GetAllColliders(hitboxIDCollider), HealthScript.TeamSystem.eneamy);
         
         StartCoroutine(hitbox.ActiveHitbox(hitboxIDCollider, 999, 0));
