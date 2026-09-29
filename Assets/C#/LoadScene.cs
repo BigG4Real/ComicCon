@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
@@ -27,7 +28,7 @@ public class LoadScene : MonoBehaviour
     [SerializeField] string SelectButtonLoad;
     [SerializeField] List<GameObject> SelectButtonObjChange;
     bool SelectButtonDown;
-
+    
     void OnAButtonLoad() => Action(ref AButtonDown, AButtonLoad, AButtonObjChange);    
     void OnBButtonLoad()=> Action(ref BButtonDown, BButtonLoad, BButtonObjChange);
     void OnYButtonLoad() =>Action(ref YButtonDown, YButtonLoad, YButtonObjChange);

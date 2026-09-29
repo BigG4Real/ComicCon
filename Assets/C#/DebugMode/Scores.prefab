@@ -830,7 +830,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Debug
+  m_DefaultActionMap: 668cb584-02a2-4e73-9739-1b9a09bda8fd
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!4 &6858516748275862603 stripped

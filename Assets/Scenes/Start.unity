@@ -1447,6 +1447,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3436069664557692033, guid: 13d152778cbe97248bba8a9f6a184d3f, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: UIControler
+      objectReference: {fileID: 0}
     - target: {fileID: 4407799317325210660, guid: 13d152778cbe97248bba8a9f6a184d3f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1483,7 +1487,8 @@ PrefabInstance:
       propertyPath: m_Value
       value: -10.685033
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3436069664557692033, guid: 13d152778cbe97248bba8a9f6a184d3f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

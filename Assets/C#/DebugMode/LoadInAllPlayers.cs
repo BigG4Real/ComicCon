@@ -81,11 +81,7 @@ public class LoadInAllPlayers : MonoBehaviour
         Debug.Log("Deleted succes");
         TimeSaveManager.SaveTime();
         RemoveAllPlayer();
-    }
-    
-    void OnBack()
-    {
-        SceneManager.LoadScene("Start");
+        currentHoldingPlayer = 0;
     }
 
     void LoadIn()

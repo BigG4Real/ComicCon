@@ -258,6 +258,93 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 80049658}
   m_CullTransparentMesh: 1
+--- !u!1 &520465418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 520465420}
+  - component: {fileID: 520465421}
+  - component: {fileID: 520465419}
+  m_Layer: 0
+  m_Name: BackSlop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &520465419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520465418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a25270af89dda5d4c8ad5ff130d0381f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LoadScene
+  AButtonLoad: 
+  AButtonObjChange: []
+  BButtonLoad: Start
+  BButtonObjChange: []
+  YButtonLoad: 
+  YButtonObjChange: []
+  XButtonLoad: 
+  XButtonObjChange: []
+  StartButtonLoad: 
+  StartButtonObjChange: []
+  SelectButtonLoad: 
+  SelectButtonObjChange: []
+--- !u!4 &520465420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520465418}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &520465421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520465418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UIControler
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &556342104
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,10 +620,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Controls:
 
-    Press "Start controler" button to exit
+    Press "Start controler" or "B" (Xbox) button to exit
 
-    Press "A" (Xbox)
-    to select for removal
+    Press
+    "A" (Xbox) to select for removal
 
     Use Up and Down Arrows to go up or down'
   m_isRightToLeft: 0
@@ -1009,38 +1096,46 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!1 &1774649735 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5250219579781513255, guid: 13d152778cbe97248bba8a9f6a184d3f, type: 3}
+--- !u!114 &1774649744 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7047303732641960870, guid: 13d152778cbe97248bba8a9f6a184d3f, type: 3}
   m_PrefabInstance: {fileID: 406641567455079084}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1774649738 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2363783072036680892, guid: 13d152778cbe97248bba8a9f6a184d3f, type: 3}
-  m_PrefabInstance: {fileID: 406641567455079084}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774649735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f90113dfbed93892a9f32ecf0a7131d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TimeSaveManager
---- !u!114 &1774649740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774649735}
+  m_GameObject: {fileID: 1920663513}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2cb0d8d917568625be1933bf3046739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChangeSaveLocationManager
-  saveFilePath: 
-  ChangeSaveLocation:
-    SaveFolder: 
-  TimeSaveManager: {fileID: 1774649738}
+--- !u!1 &1920663513 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5250219579781513255, guid: 13d152778cbe97248bba8a9f6a184d3f, type: 3}
+  m_PrefabInstance: {fileID: 406641567455079084}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1920663518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920663513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a25270af89dda5d4c8ad5ff130d0381f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LoadScene
+  AButtonLoad: 
+  AButtonObjChange: []
+  BButtonLoad: Start
+  BButtonObjChange: []
+  YButtonLoad: 
+  YButtonObjChange: []
+  XButtonLoad: 
+  XButtonObjChange: []
+  StartButtonLoad: 
+  StartButtonObjChange: []
+  SelectButtonLoad: 
+  SelectButtonObjChange: []
 --- !u!224 &2096715367 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1997056114068994596, guid: 13d152778cbe97248bba8a9f6a184d3f, type: 3}
@@ -1145,7 +1240,11 @@ PrefabInstance:
     - target: {fileID: 2363783072036680892, guid: 13d152778cbe97248bba8a9f6a184d3f, type: 3}
       propertyPath: ChangeSaveLocationManager
       value: 
-      objectReference: {fileID: 1774649740}
+      objectReference: {fileID: 1774649744}
+    - target: {fileID: 3436069664557692033, guid: 13d152778cbe97248bba8a9f6a184d3f, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: Debug
+      objectReference: {fileID: 0}
     - target: {fileID: 4407799317325210660, guid: 13d152778cbe97248bba8a9f6a184d3f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1187,8 +1286,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5250219579781513255, guid: 13d152778cbe97248bba8a9f6a184d3f, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 1774649740}
+      insertIndex: -1
+      addedObject: {fileID: 1920663518}
   m_SourcePrefab: {fileID: 100100000, guid: 13d152778cbe97248bba8a9f6a184d3f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -1197,3 +1296,4 @@ SceneRoots:
   - {fileID: 1769207260}
   - {fileID: 1025694900}
   - {fileID: 556342107}
+  - {fileID: 520465420}

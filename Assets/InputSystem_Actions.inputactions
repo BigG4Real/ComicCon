@@ -17,6 +17,26 @@
                     "priority": 0
                 },
                 {
+                    "name": "ReloadStart",
+                    "type": "Button",
+                    "id": "eccec4b6-ac8a-4950-8330-3508b4792779",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Reload",
+                    "type": "Button",
+                    "id": "d5f95f15-459d-4007-911b-63e194bfbefb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
                     "name": "UpOrDown",
                     "type": "Value",
                     "id": "fedc8924-c7a5-4ec6-83b6-e1ff2ee1a5b5",
@@ -287,6 +307,50 @@
                     "processors": "",
                     "groups": "Joystick",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "84e93a0c-a75a-4417-b1d5-5cedebe61dc2",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReloadStart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bae4332d-4a2f-4329-81c8-8827a1bf15b8",
+                    "path": "<Keyboard>/1",
+                    "interactions": "Hold(duration=5)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReloadStart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5ec81172-b246-4d7d-877d-2af2f267e09c",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7be74543-02f9-4068-8bca-8d75c7db75e1",
+                    "path": "<Keyboard>/0",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -846,6 +910,16 @@
                     "priority": 0
                 },
                 {
+                    "name": "BButtonLoad",
+                    "type": "Button",
+                    "id": "850301f6-9afc-41ed-b9a1-655e0d6df993",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
                     "name": "Delet",
                     "type": "Button",
                     "id": "78b11369-92fc-42f5-9aad-f9ad21199279",
@@ -861,7 +935,7 @@
                     "id": "f11538d2-147a-4bac-b1c3-5ab0cf785ea4",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold(duration=2)",
                     "initialStateCheck": false,
                     "priority": 0
                 }
@@ -912,6 +986,17 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "up",
+                    "id": "1db70990-d832-4afb-bc5b-2519fbcb3886",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "UpOrDownDebug",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "down",
                     "id": "05722f54-0c6d-4f15-afca-858d462c8d78",
                     "path": "<Keyboard>/s",
@@ -929,6 +1014,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
+                    "action": "UpOrDownDebug",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "fde1b1bd-61ed-4a52-b0f4-78f135d10957",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
                     "action": "UpOrDownDebug",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -952,6 +1048,28 @@
                     "processors": "",
                     "groups": "Joystick",
                     "action": "UpOrDownDebug",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "52b7c35a-9a5b-43bb-8df0-6a5af7015fb7",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BButtonLoad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "26fd475c-c01a-47c2-972e-244233f3c6da",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BButtonLoad",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

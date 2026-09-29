@@ -46,6 +46,7 @@ public class BossAI : MonoBehaviour
 
     void GenerateAttack()
     {
+        if(!(GetComponent<HealthScript>().Health > 0)) return;
         float random = Random.Range(RandomWaitTimeAttacks.x, RandomWaitTimeAttacks.y);
         int randomAttack = Random.Range(1, 3);
         if(!didDig && RespawnAfterDig != null && randomAttack == 1)
