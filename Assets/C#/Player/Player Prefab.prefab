@@ -2426,7 +2426,7 @@ MonoBehaviour:
   GravityAmount: 0
   GroundCheckDis: 0.3
   GroundCheckUpAmount: 0.25
-  GroundCheckBox: {x: 0.9, y: 0.1}
+  GroundCheckBox: {x: 0.6, y: 0.1}
   GroundLayer:
     serializedVersion: 2
     m_Bits: 8

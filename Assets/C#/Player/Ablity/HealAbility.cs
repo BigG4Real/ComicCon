@@ -52,6 +52,11 @@ public class HealAbility : MonoBehaviour
 
     void OnHeal()
     {
+        if(!(essence.essenceAmount >= essenceToHeal)) {
+            isHealing = false;
+            InteruptHeal();
+            return;
+        }
         isHealing = !isHealing;
         if(!isHealing){ InteruptHeal(); }
     }
