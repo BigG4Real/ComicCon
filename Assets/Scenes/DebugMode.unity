@@ -290,16 +290,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LoadScene
   AButtonLoad: 
   AButtonObjChange: []
+  AButtonScripts: []
   BButtonLoad: Start
   BButtonObjChange: []
+  BButtonScripts: []
   YButtonLoad: 
   YButtonObjChange: []
+  YButtonScripts: []
   XButtonLoad: 
   XButtonObjChange: []
+  XButtonScripts: []
   StartButtonLoad: 
   StartButtonObjChange: []
+  StartButtonScripts: []
   SelectButtonLoad: 
   SelectButtonObjChange: []
+  SelectButtonScripts: []
 --- !u!4 &520465420
 Transform:
   m_ObjectHideFlags: 0
@@ -620,10 +626,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Controls:
 
-    Press "Start controler" or "B" (Xbox) button to exit
+    Press "B" (Xbox) button to exit
 
-    Press
-    "A" (Xbox) to select for removal
+    Press "A" (Xbox) to
+    select for removal
 
     Use Up and Down Arrows to go up or down'
   m_isRightToLeft: 0
@@ -1126,16 +1132,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LoadScene
   AButtonLoad: 
   AButtonObjChange: []
+  AButtonScripts: []
   BButtonLoad: Start
   BButtonObjChange: []
+  BButtonScripts: []
   YButtonLoad: 
   YButtonObjChange: []
+  YButtonScripts: []
   XButtonLoad: 
   XButtonObjChange: []
+  XButtonScripts: []
   StartButtonLoad: 
   StartButtonObjChange: []
+  StartButtonScripts: []
   SelectButtonLoad: 
   SelectButtonObjChange: []
+  SelectButtonScripts: []
 --- !u!224 &2096715367 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1997056114068994596, guid: 13d152778cbe97248bba8a9f6a184d3f, type: 3}

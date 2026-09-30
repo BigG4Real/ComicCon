@@ -905,7 +905,7 @@
                     "id": "88f7b130-da55-44b1-b126-768cc72a45ec",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "",
                     "initialStateCheck": true,
                     "priority": 0
                 },
@@ -1408,7 +1408,7 @@
                     "id": "dda00bba-0dac-4879-b654-d4723c748803",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "Press",
                     "initialStateCheck": false,
                     "priority": 0
                 },
@@ -1418,7 +1418,7 @@
                     "id": "63334c5e-a646-4d0d-979d-bafb760c88ae",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "Press",
                     "initialStateCheck": false,
                     "priority": 0
                 },
@@ -1428,7 +1428,7 @@
                     "id": "0a80d819-fb3e-47a9-9270-b08d73e34482",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "Press",
                     "initialStateCheck": false,
                     "priority": 0
                 },
@@ -1438,7 +1438,7 @@
                     "id": "e7e7f3ba-6a21-4b6d-b89f-1ee3d2a4e467",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "Press",
                     "initialStateCheck": false,
                     "priority": 0
                 },
@@ -1492,7 +1492,7 @@
                     "path": "<Keyboard>/b",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "BButtonLoad",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1503,7 +1503,7 @@
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "BButtonLoad",
                     "isComposite": false,
                     "isPartOfComposite": false

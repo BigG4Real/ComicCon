@@ -809,8 +809,6 @@ GameObject:
   - component: {fileID: 516205274}
   - component: {fileID: 516205273}
   - component: {fileID: 516205272}
-  - component: {fileID: 516205271}
-  - component: {fileID: 516205276}
   m_Layer: 5
   m_Name: Canvas (1)
   m_TagString: Untagged
@@ -818,32 +816,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &516205271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 516205270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a25270af89dda5d4c8ad5ff130d0381f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LoadScene
-  AButtonLoad: 
-  AButtonObjChange: []
-  BButtonLoad: 
-  BButtonObjChange:
-  - {fileID: 1508719621}
-  - {fileID: 516205270}
-  YButtonLoad: 
-  YButtonObjChange: []
-  XButtonLoad: 
-  XButtonObjChange: []
-  StartButtonLoad: 
-  StartButtonObjChange: []
-  SelectButtonLoad: 
-  SelectButtonObjChange: []
 --- !u!114 &516205272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -915,7 +887,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516205270}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
@@ -925,43 +897,13 @@ RectTransform:
   - {fileID: 274863469}
   - {fileID: 499033146}
   - {fileID: 382377858}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1239745109}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -430, y: -220}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &516205276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 516205270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: UIControler
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1001 &575341422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1905,6 +1847,144 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186531411}
   m_CullTransparentMesh: 1
+--- !u!1 &1239745105
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1239745109}
+  - component: {fileID: 1239745108}
+  - component: {fileID: 1239745107}
+  - component: {fileID: 1239745106}
+  m_Layer: 5
+  m_Name: PlayerInput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1239745106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239745105}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a25270af89dda5d4c8ad5ff130d0381f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LoadScene
+  AButtonLoad: 
+  AButtonObjChange: []
+  AButtonScripts: []
+  BButtonLoad: 
+  BButtonObjChange:
+  - {fileID: 1508719621}
+  - {fileID: 516205270}
+  BButtonScripts:
+  - {fileID: 1239745107}
+  - {fileID: 1239745106}
+  YButtonLoad: 
+  YButtonObjChange: []
+  YButtonScripts: []
+  XButtonLoad: 
+  XButtonObjChange: []
+  XButtonScripts: []
+  StartButtonLoad: 
+  StartButtonObjChange: []
+  StartButtonScripts: []
+  SelectButtonLoad: 
+  SelectButtonObjChange: []
+  SelectButtonScripts: []
+--- !u!114 &1239745107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239745105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a25270af89dda5d4c8ad5ff130d0381f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LoadScene
+  AButtonLoad: Map
+  AButtonObjChange: []
+  AButtonScripts: []
+  BButtonLoad: Tutorial
+  BButtonObjChange: []
+  BButtonScripts: []
+  YButtonLoad: 
+  YButtonObjChange:
+  - {fileID: 516205270}
+  - {fileID: 1508719621}
+  YButtonScripts:
+  - {fileID: 1239745106}
+  - {fileID: 1239745107}
+  XButtonLoad: 
+  XButtonObjChange: []
+  XButtonScripts: []
+  StartButtonLoad: 
+  StartButtonObjChange: []
+  StartButtonScripts: []
+  SelectButtonLoad: 
+  SelectButtonObjChange: []
+  SelectButtonScripts: []
+--- !u!114 &1239745108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239745105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UIControler
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!224 &1239745109
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239745105}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1508719625}
+  - {fileID: 516205275}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 960, y: 540}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1240264821
 GameObject:
   m_ObjectHideFlags: 0
@@ -2333,8 +2413,6 @@ GameObject:
   - component: {fileID: 1508719624}
   - component: {fileID: 1508719623}
   - component: {fileID: 1508719622}
-  - component: {fileID: 1508719626}
-  - component: {fileID: 1508719627}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2427,69 +2505,13 @@ RectTransform:
   - {fileID: 830337420}
   - {fileID: 614628672}
   - {fileID: 1465848727}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1239745109}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1508719626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1508719621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a25270af89dda5d4c8ad5ff130d0381f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LoadScene
-  AButtonLoad: Map
-  AButtonObjChange: []
-  BButtonLoad: Tutorial
-  BButtonObjChange: []
-  YButtonLoad: 
-  YButtonObjChange:
-  - {fileID: 516205270}
-  - {fileID: 1508719621}
-  XButtonLoad: 
-  XButtonObjChange: []
-  StartButtonLoad: 
-  StartButtonObjChange: []
-  SelectButtonLoad: 
-  SelectButtonObjChange: []
---- !u!114 &1508719627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1508719621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: UIControler
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &1640011685
 GameObject:
   m_ObjectHideFlags: 0
@@ -2782,5 +2804,4 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 507861158}
-  - {fileID: 1508719625}
-  - {fileID: 516205275}
+  - {fileID: 1239745109}

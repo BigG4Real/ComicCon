@@ -1217,16 +1217,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LoadScene
   AButtonLoad: 
   AButtonObjChange: []
+  AButtonScripts: []
   BButtonLoad: Start
   BButtonObjChange: []
+  BButtonScripts: []
   YButtonLoad: 
   YButtonObjChange: []
+  YButtonScripts: []
   XButtonLoad: 
   XButtonObjChange: []
+  XButtonScripts: []
   StartButtonLoad: 
   StartButtonObjChange: []
+  StartButtonScripts: []
   SelectButtonLoad: 
   SelectButtonObjChange: []
+  SelectButtonScripts: []
 --- !u!114 &846012712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1254,7 +1260,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 44e0d68f-d53e-4fc3-a9f0-bfb1c63d0d77
+  m_DefaultActionMap: UIControler
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &991099417
@@ -2666,6 +2672,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3436069664557692033, guid: 13d152778cbe97248bba8a9f6a184d3f, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: Debug
+      objectReference: {fileID: 0}
     - target: {fileID: 4407799317325210660, guid: 13d152778cbe97248bba8a9f6a184d3f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2694,7 +2704,8 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: -100
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3436069664557692033, guid: 13d152778cbe97248bba8a9f6a184d3f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

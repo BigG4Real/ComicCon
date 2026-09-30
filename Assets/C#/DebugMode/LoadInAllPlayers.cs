@@ -68,7 +68,9 @@ public class LoadInAllPlayers : MonoBehaviour
 
     void OnUpOrDownDebug(InputValue value)
     {
+        Debug.Log("SLOP");
         if(!allowInteraction) return;
+        Debug.Log("SLOP");
         int check = currentHoldingPlayer;
         currentHoldingPlayer = Math.Clamp(currentHoldingPlayer -= (int)value.Get<Vector2>().y, 0, allPlayers.Count - 1);
         if(check != currentHoldingPlayer)

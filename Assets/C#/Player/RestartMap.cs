@@ -5,12 +5,10 @@ public class RestartMap : MonoBehaviour
 {
     void OnReload()
     {
-        SceneManager.LoadScene("Map");
-        Debug.Log("Slop");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     void OnReloadStart()
     {
         SceneManager.LoadScene("Start");
-        Debug.Log("Slop");
     }
 }
