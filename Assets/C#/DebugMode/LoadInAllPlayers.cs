@@ -76,7 +76,7 @@ public class LoadInAllPlayers : MonoBehaviour
         Vector2 dir = LegitMove(value.Get<Vector2>());
         currentHoldingPlayer = Math.Clamp(currentHoldingPlayer -= (int)dir.y, 0, allPlayers.Count - 1);
         if(check != currentHoldingPlayer)
-            scrollRect.content.transform.position += (int)dir.y * scrollRect.scrollSensitivity * Vector3.down;
+            scrollRect.content.transform.position += (int)dir.y/2 * scrollRect.scrollSensitivity * Vector3.down;
     }
 
     void OnBack()
