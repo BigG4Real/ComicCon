@@ -27,6 +27,7 @@ public class LoadInAllPlayers : MonoBehaviour
     [SerializeField] ScrollRect scrollRect;
     [SerializeField] TMP_Text saveLocation;
     [SerializeField] bool allowInteraction = true;
+    bool waitTime;
 
     void Start()
     {
@@ -68,13 +69,44 @@ public class LoadInAllPlayers : MonoBehaviour
 
     void OnUpOrDownDebug(InputValue value)
     {
-        Debug.Log("SLOP");
-        if(!allowInteraction) return;
-        Debug.Log("SLOP");
+        if(!allowInteraction || waitTime) return;
+        waitTime = true;
+        Invoke(nameof(ChangeWaitTime), 0.15f);
         int check = currentHoldingPlayer;
-        currentHoldingPlayer = Math.Clamp(currentHoldingPlayer -= (int)value.Get<Vector2>().y, 0, allPlayers.Count - 1);
+        Vector2 dir = LegitMove(value.Get<Vector2>());
+        currentHoldingPlayer = Math.Clamp(currentHoldingPlayer -= (int)dir.y, 0, allPlayers.Count - 1);
         if(check != currentHoldingPlayer)
-            scrollRect.content.transform.position += (int)value.Get<Vector2>().y * scrollRect.scrollSensitivity * Vector3.down;
+            scrollRect.content.transform.position += (int)dir.y * scrollRect.scrollSensitivity * Vector3.down;
+    }
+
+    void OnBack()
+    {
+        SceneManager.LoadScene("Start");
+    }
+
+    void ChangeWaitTime()
+    {
+        waitTime = false;
+    }
+
+    Vector2 LegitMove(Vector2 dir)
+    {
+        float deadZone = 0.85f;
+        
+        if(dir.x >= -deadZone && dir.x <= deadZone)
+        {
+            dir.x = 0;
+        }
+        else if(dir.x >= deadZone){dir.x = 1;}
+        else if(dir.x <= -deadZone){dir.x = -1;}
+
+        if(dir.y >= -deadZone && dir.y <= deadZone)
+        {
+            dir.y = 0;
+        }
+        else if(dir.y >= deadZone){dir.y = 1;}
+        else if(dir.y <= -deadZone){dir.y = -1;}
+        return dir;
     }
 
     void OnDelet()
