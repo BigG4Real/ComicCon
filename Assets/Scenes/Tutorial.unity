@@ -69562,8 +69562,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.9217, y: -1.5}
-  m_SizeDelta: {x: 7.9933, y: 0.75}
+  m_AnchoredPosition: {x: 5.5169, y: -1.5}
+  m_SizeDelta: {x: 11.1836, y: 0.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1566207041
 MonoBehaviour:
@@ -69585,7 +69585,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '    +     = Jump Attack'
+  m_text: '    +     + Hit Eneamy = Jump Attack'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -69612,7 +69612,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.7
+  m_fontSize: 0.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -71344,7 +71344,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 96.43, y: 0.68}
+  m_AnchoredPosition: {x: 95.167, y: 0.68}
   m_SizeDelta: {x: 3.75, y: 0.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1669037425
@@ -72120,7 +72120,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.47, y: -0.4904791}
+  m_AnchoredPosition: {x: -5.277007, y: -0.4904791}
   m_SizeDelta: {x: 0.7, y: 0.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1793734050
@@ -72851,7 +72851,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.68, y: 0}
+  m_AnchoredPosition: {x: -3.5960019, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2075975351

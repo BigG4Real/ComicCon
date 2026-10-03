@@ -46,10 +46,12 @@ public class hitboxManger : MonoBehaviour
         return false;
     }
 
-    public IEnumerator ActiveHitbox(int index, float hitBoxUppTime, float cooldown)
+    public IEnumerator ActiveHitbox(int index, float hitBoxUppTime, float cooldown, float watiTimeBefore = 0)
     {
         Hitbox tempHitbox = hitboxes[index];
-        if (tempHitbox.Activated) { yield return 0; }
+        if (tempHitbox.OnCooldwon ) { yield return 0; }
+        yield return new WaitForSeconds(watiTimeBefore);
+        if (tempHitbox.OnCooldwon ) { yield return 0; }
         tempHitbox.Activated = true;
         tempHitbox.OnCooldwon = true;
         hitboxes[index] = tempHitbox;

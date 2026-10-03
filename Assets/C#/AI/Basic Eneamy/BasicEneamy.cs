@@ -51,7 +51,6 @@ public class BasicEneamy : MonoBehaviour
             }
         }
 
-        ani.SetBool("UpAttack", (IsAbove.Seeing.Count > 0));
         if(IsAbove.Seeing.Count > 0)
         {
             Invoke(nameof(AttackUp), 0.5f);
@@ -67,19 +66,18 @@ public class BasicEneamy : MonoBehaviour
 
     void AttackUp()
     {
+        ani.SetBool("UpAttack", (IsAbove.Seeing.Count > 0));
         if(!(IsAbove.Seeing.Count > 0)) return;
+        StartCoroutine(hitbox.ActiveHitbox(hitboxIDAbove, (float)((6)/60), (float)(20/60), (float)((8)/60)));
         hitbox.DealDamgeToAllColliders(hitboxIDAbove, 1, hitbox.GetAllColliders(hitboxIDAbove), HealthScript.TeamSystem.eneamy);
-        hitbox.RemoveAllHealth(hitboxIDAbove);
-        StartCoroutine(hitbox.ActiveHitbox(hitboxIDAbove, 1f, 0));
     }
 
     void AttackForward()
     {
         ani.SetBool("ForwardAttack", (IsForward.Seeing.Count > 0));
         if(!(IsForward.Seeing.Count > 0)) return;
+        StartCoroutine(hitbox.ActiveHitbox(hitboxIDForward, (float)((4)/60), (float)(12/60), (float)(4/60)));
         hitbox.DealDamgeToAllColliders(hitboxIDForward, 1, hitbox.GetAllColliders(hitboxIDForward), HealthScript.TeamSystem.eneamy);
-        hitbox.RemoveAllHealth(hitboxIDForward);
-        StartCoroutine(hitbox.ActiveHitbox(hitboxIDForward, 1f, 0));
     }
 
     void RemoveAllHealth()

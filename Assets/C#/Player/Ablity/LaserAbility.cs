@@ -26,7 +26,7 @@ public class LaserAbility : MonoBehaviour
         hitboxID = hitboxManger.AddHitbox(hitBoxSize, offSet);
     }
 
-    bool allowSpecial = false;
+    bool allowSpecial = true;
     void OnUpOrDown(InputValue inputValue)
     {
         allowSpecial = false;
