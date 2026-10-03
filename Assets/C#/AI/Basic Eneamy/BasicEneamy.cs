@@ -14,6 +14,7 @@ public class BasicEneamy : MonoBehaviour
     
     [Header("Attacks")]
     [SerializeField] hitboxManger hitbox;
+    [SerializeField] CanAttack canAttack;
     [SerializeField] Vector2 SizeOfEneamy;
     int hitboxIDCollider;
     [Header("Above Attack")]
@@ -67,16 +68,14 @@ public class BasicEneamy : MonoBehaviour
     void AttackUp()
     {
         ani.SetBool("UpAttack", (IsAbove.Seeing.Count > 0));
-        if(!(IsAbove.Seeing.Count > 0)) return;
-        StartCoroutine(hitbox.ActiveHitbox(hitboxIDAbove, (float)((6)/60), (float)(20/60), (float)((8)/60)));
+        hitbox.hitboxes[hitboxIDAbove].Activated = canAttack.Up;
         hitbox.DealDamgeToAllColliders(hitboxIDAbove, 1, hitbox.GetAllColliders(hitboxIDAbove), HealthScript.TeamSystem.eneamy);
     }
 
     void AttackForward()
     {
         ani.SetBool("ForwardAttack", (IsForward.Seeing.Count > 0));
-        if(!(IsForward.Seeing.Count > 0)) return;
-        StartCoroutine(hitbox.ActiveHitbox(hitboxIDForward, (float)((4)/60), (float)(12/60), (float)(4/60)));
+        hitbox.hitboxes[hitboxIDAbove].Activated = canAttack.Forward;
         hitbox.DealDamgeToAllColliders(hitboxIDForward, 1, hitbox.GetAllColliders(hitboxIDForward), HealthScript.TeamSystem.eneamy);
     }
 

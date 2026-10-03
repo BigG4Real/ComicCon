@@ -239,6 +239,7 @@ MonoBehaviour:
   RandomStandTime: {x: 1.1, y: 2.2}
   BetweenRandomStand: {x: 3.3, y: 4.4}
   hitbox: {fileID: 1485963703612628168}
+  canAttack: {fileID: 9155286474429084075}
   SizeOfEneamy: {x: 1.4, y: 0.75}
   IsAbove: {fileID: 211933449324511386}
   AttackAboveSize: {x: 1.459956, y: 2.0967}
@@ -804,6 +805,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7124904968534477694, guid: 46cf447cf60df73e5b53cb98504030cb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 722194877036726255}
+    - targetCorrespondingSourceObject: {fileID: 7124904968534477694, guid: 46cf447cf60df73e5b53cb98504030cb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9155286474429084075}
     - targetCorrespondingSourceObject: {fileID: 2457222092054121492, guid: 46cf447cf60df73e5b53cb98504030cb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5844353167223040030}
@@ -1096,6 +1100,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &9155286474429084075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771422192228923543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22568e42d79a85c18a5aa6ea2e537d9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CanAttack
+  Up: 0
+  Forward: 0
 --- !u!1 &3128218123055507135 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5844631662600394070, guid: 46cf447cf60df73e5b53cb98504030cb, type: 3}
