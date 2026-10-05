@@ -59,8 +59,8 @@ public class BasicEneamy : MonoBehaviour
         {
             Invoke(nameof(AttackForward), 0.5f);
         }
-
-        hitbox.DealDamgeToAllColliders(hitboxIDCollider, 1, hitbox.GetAllColliders(hitboxIDCollider), HealthScript.TeamSystem.eneamy);
+        float damgeAmount;
+        hitbox.DealDamgeToAllColliders(hitboxIDCollider, damgeAmount = 1, hitbox.GetAllColliders(hitboxIDCollider), HealthScript.TeamSystem.eneamy);
         StartCoroutine(hitbox.ActiveHitbox(hitboxIDCollider, 999, 0));
     }
 
