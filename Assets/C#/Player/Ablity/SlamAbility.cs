@@ -56,11 +56,10 @@ public class SlamAbility : MonoBehaviour
             PreformeSpecial = false;
             DashDown = false;
             dmgScale = (float)Math.Round(dmgScale);
-            StartCoroutine(hitboxManger.ActiveHitbox(hitboxFullDmgID, HitboxApperTime, Cooldown));
-            StartCoroutine(hitboxManger.ActiveHitbox(hitboxFallOffDmgID, HitboxApperTime, Cooldown));
             
             values.ForEach(v =>
             {
+                hitboxManger.hitboxes[v.id].Activated = true;
                 hitboxManger.DealDamgeToAllColliders(
                     v.id,
                     v.dmgAmount,
@@ -69,6 +68,7 @@ public class SlamAbility : MonoBehaviour
                     DidDamge,
                     DidDamge
                 );
+                hitboxManger.hitboxes[v.id].Activated = false;
             });
         }
     }
