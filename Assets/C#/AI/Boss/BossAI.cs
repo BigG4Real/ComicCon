@@ -36,9 +36,13 @@ public class BossAI : MonoBehaviour
     [SerializeField] Animator ani;
     [SerializeField] Vector2 RandomWaitTimeAttacks;
 
-
+    [Header("Jump")]
+    [SerializeField] float JumpForce;
+    [SerializeField] AILos isAbove;
+    bool canJump = true;
     void Start()
     {
+        canJump = true;
         hitboxIDCollider = hitbox.AddHitbox(SizeOfEneamy, new Vector2(), 6, false);
         RemoveAllHealth();
         GenerateAttack();
@@ -73,6 +77,24 @@ public class BossAI : MonoBehaviour
 
         if(isRolling)
             Roll();
+
+        if(CanJump())
+            Invoke(nameof(Jump), 0.5f);
+    }
+
+    bool CanJump(float xVeclocityBeforeJump = 3) => (!isDigging && isAbove.Seeing.Count > 0 && rb.linearVelocityX < xVeclocityBeforeJump && canJump);
+
+    void Jump()
+    {
+        if(!CanJump()) return;
+        rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+        canJump = false;
+        Invoke(nameof( ResetJump), 0.5f);
+    }
+
+    void ResetJump()
+    {
+        canJump = true;
     }
 
     void Roll()
@@ -84,6 +106,9 @@ public class BossAI : MonoBehaviour
 
     IEnumerator RollActive(float wait)
     {
+        float xVeclocityBeforeJump = 3;
+        yield return new WaitUntil(() => isAbove.Seeing.Count > 0 && rb.linearVelocityX < xVeclocityBeforeJump);
+
         yield return new WaitForSeconds(wait);
         ani.SetBool("Roll", true);
         ani.SetTrigger("StartRoll");

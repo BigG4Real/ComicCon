@@ -52,7 +52,7 @@ public class HealAbility : MonoBehaviour
 
     void OnHeal()
     {
-        if(!(essence.essenceAmount >= essenceToHeal)) {
+        if(!(essence.essenceAmount >= essenceToHeal) || health.Health == health.MaxHealth) {
             isHealing = false;
             InteruptHeal();
             return;

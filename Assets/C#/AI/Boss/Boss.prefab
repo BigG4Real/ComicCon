@@ -32,6 +32,57 @@ Transform:
   - {fileID: 7852067930900130054}
   m_Father: {fileID: 7499413327385953742}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &385993469813213816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3068384024315971993}
+  - component: {fileID: 4538193875618951331}
+  m_Layer: 0
+  m_Name: IsPlayerOver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3068384024315971993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385993469813213816}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8409146697408964668}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &4538193875618951331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385993469813213816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7c06ad3da0880478ad8a7f2006e21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AILos
+  CheckRadius: 10
+  Fov: 100
+  BlockLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  Seeing: []
+  SeeingTimeAmount: 0
 --- !u!1 &1378838096237613107
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,6 +927,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3068384024315971993}
   - {fileID: 8778204474987344701}
   - {fileID: 6924623380820433792}
   - {fileID: 8767847837325972426}
@@ -1164,6 +1216,8 @@ MonoBehaviour:
   RockPrefab: {fileID: 5136633330113627293, guid: da86d550e58cb7506acb81c708d68e72, type: 3}
   ani: {fileID: 5349393192071399542}
   RandomWaitTimeAttacks: {x: 4.75, y: 5.25}
+  JumpForce: 15
+  isAbove: {fileID: 4538193875618951331}
 --- !u!1001 &4165184862248290082
 PrefabInstance:
   m_ObjectHideFlags: 0
