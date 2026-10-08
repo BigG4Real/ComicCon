@@ -11,6 +11,7 @@ public class BossSpawn : MonoBehaviour
     [SerializeField] Animator ani;
     [SerializeField] HealthScript bossHealth;
     [SerializeField] BossAI ai;
+    [SerializeField] Collider2D PlayerCollider;
     bool inFight;
     void Start()
     {
@@ -19,9 +20,13 @@ public class BossSpawn : MonoBehaviour
 
     void Update()
     {
-        if(hitboxManger.GetAllColliders(HitboxId).Length > 0 && !inFight)
+        Collider2D[] col = hitboxManger.GetAllColliders(HitboxId);
+        for (int i = 0; i < col.Length; i++)
         {
-            StartBoss();
+            if(col[i] == PlayerCollider && !inFight)
+            {
+                StartBoss();
+            }
         }
         if(bossHealth.Health <= 0 && inFight)
         {

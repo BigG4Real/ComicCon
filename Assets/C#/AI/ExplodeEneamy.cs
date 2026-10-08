@@ -12,7 +12,7 @@ public class ExplodeEneamy : HealthScript
 
     [SerializeField] List<Collider2D> eneamyPartsCollider = new List<Collider2D>();
     [SerializeField] List<Rigidbody2D> eneamyPartsRb = new List<Rigidbody2D>();
-
+    [SerializeField] float MinusTime;
     public override void Death()
     {
         for (int i = 0; i < scripts.Count; i++)
@@ -23,6 +23,7 @@ public class ExplodeEneamy : HealthScript
         rb.simulated = false;
         ani.enabled = false;
         SetPartSate(true);
+        GameObject.FindWithTag("Time").GetComponent<Timer>().TimeRemove(MinusTime);
     }
 
     void Start()

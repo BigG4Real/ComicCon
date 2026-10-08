@@ -6,6 +6,7 @@ public class FinnishWithGame : MonoBehaviour
     int HitboxId;
     [SerializeField] Vector2 HitBoxSize;
     [SerializeField] Timer Timer;
+    [SerializeField] Collider2D PlayerCollider;
 
     void Start()
     {
@@ -14,10 +15,14 @@ public class FinnishWithGame : MonoBehaviour
 
     void Update()
     {
-        if(hitboxManger.GetAllColliders(HitboxId).Length > 0)
+        Collider2D[] col = hitboxManger.GetAllColliders(HitboxId);
+        for (int i = 0; i < col.Length; i++)
         {
-            Timer.LoadScoreboard();
-            this.enabled = false;
+            if(col[i] == PlayerCollider)
+            {
+                Timer.LoadScoreboard();
+                this.enabled = false;
+            }
         }
     }
 }

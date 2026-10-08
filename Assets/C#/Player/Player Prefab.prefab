@@ -2958,7 +2958,7 @@ GameObject:
   - component: {fileID: 5503152505633657342}
   m_Layer: 0
   m_Name: Time
-  m_TagString: Untagged
+  m_TagString: Time
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3027,6 +3027,7 @@ MonoBehaviour:
   CurrentTime: 0
   timeSaveManager: {fileID: 3283572438252081514}
   StatsText: {fileID: 2332755958814943600}
+  MinusTimeObj: {fileID: 360018845072102958, guid: 757829cbb1002e242a021bc6db5a92fc, type: 3}
 --- !u!1 &6430265566126069836
 GameObject:
   m_ObjectHideFlags: 0

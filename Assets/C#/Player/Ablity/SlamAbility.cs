@@ -33,6 +33,7 @@ public class SlamAbility : MonoBehaviour
     [SerializeField] hitboxManger hitboxManger;
     int hitboxFullDmgID;
     int hitboxFallOffDmgID;
+    int noAttackUnderSlamHitBox;
 
 
     void Update()
@@ -92,12 +93,14 @@ public class SlamAbility : MonoBehaviour
         player.rb.linearVelocityY = 0;
         player.rb.AddForce(Vector2.up * player.JumpForceAmount, ForceMode2D.Impulse);
         player.HowManyExtraJumps--;
+        hitboxManger.hitboxes[noAttackUnderSlamHitBox].Activated = false;
     }
 
     void Start()
     {
         hitboxFullDmgID = hitboxManger.AddHitbox(hitBoxSize, offSet);
         hitboxFallOffDmgID = hitboxManger.AddHitbox(hitBoxSizeFallOff, offSetFallOff);
+        noAttackUnderSlamHitBox = hitboxManger.AddHitbox(Vector2.zero,Vector2.zero);
     }
 
     void DashDownEnable()
@@ -123,6 +126,7 @@ public class SlamAbility : MonoBehaviour
             player.rb.linearVelocityY = upSpeed;
             player.rb.AddForce(transform.up * upSpeed, ForceMode2D.Impulse);
             Invoke(nameof(DashDownEnable), timeBeforeFall);
+            hitboxManger.hitboxes[noAttackUnderSlamHitBox].Activated = true;
         }
     }
 

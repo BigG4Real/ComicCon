@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7479656960326727466}
   - component: {fileID: 4334561243665887625}
   - component: {fileID: 1485963703612628168}
-  - component: {fileID: 1524830943186737241}
+  - component: {fileID: 6510880040012701156}
   - component: {fileID: 4186506306473928684}
   m_Layer: 7
   m_Name: Scopion Eneamy
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::hitboxManger
   hitboxes: []
   lookingDir: {fileID: 6593308654783527240}
---- !u!114 &1524830943186737241
+--- !u!114 &6510880040012701156
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1721998192060453587}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895b65cb23b413b499760276b8c1c5bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 3989bea34e47af64880dcc055da5314c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicEneamy
   ai: {fileID: 4560657262138875629}
@@ -239,7 +239,7 @@ MonoBehaviour:
   RandomStandTime: {x: 1.1, y: 2.2}
   BetweenRandomStand: {x: 3.3, y: 4.4}
   hitbox: {fileID: 1485963703612628168}
-  canAttack: {fileID: 9155286474429084075}
+  canAttack: {fileID: 5677931677878670646}
   SizeOfEneamy: {x: 1.4, y: 0.75}
   IsAbove: {fileID: 211933449324511386}
   AttackAboveSize: {x: 1.459956, y: 2.0967}
@@ -265,7 +265,7 @@ MonoBehaviour:
   MaxHealth: 25
   canTakeDamge: 1
   scripts:
-  - {fileID: 1524830943186737241}
+  - {fileID: 6510880040012701156}
   - {fileID: 1485963703612628168}
   - {fileID: 4560657262138875629}
   - {fileID: 8521480984259917028}
@@ -308,6 +308,7 @@ MonoBehaviour:
   - {fileID: 8863851857069974535}
   - {fileID: 5851309434820300623}
   - {fileID: 244619877855132556}
+  MinusTime: 10
 --- !u!1 &2164413882611709487
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +808,7 @@ PrefabInstance:
       addedObject: {fileID: 722194877036726255}
     - targetCorrespondingSourceObject: {fileID: 7124904968534477694, guid: 46cf447cf60df73e5b53cb98504030cb, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9155286474429084075}
+      addedObject: {fileID: 5677931677878670646}
     - targetCorrespondingSourceObject: {fileID: 2457222092054121492, guid: 46cf447cf60df73e5b53cb98504030cb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5844353167223040030}
@@ -1100,7 +1101,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &9155286474429084075
+--- !u!114 &5677931677878670646
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1109,7 +1110,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1771422192228923543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22568e42d79a85c18a5aa6ea2e537d9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 520db58e041343e43ae854cc6aad37b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CanAttack
   Up: 0
