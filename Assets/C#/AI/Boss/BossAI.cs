@@ -9,7 +9,8 @@ public class BossAI : MonoBehaviour
     [SerializeField] AIMovement ai;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Collider2D Hitbox;
-    
+    [SerializeField] AILos Los;
+
     [Header("DMG collider")]
     [SerializeField] hitboxManger hitbox;
     [SerializeField] Vector2 SizeOfEneamy;
@@ -82,7 +83,7 @@ public class BossAI : MonoBehaviour
             Invoke(nameof(Jump), 0.5f);
     }
 
-    bool CanJump(float xVeclocityBeforeJump = 3) => (!isDigging && isAbove.Seeing.Count > 0 && rb.linearVelocityX < xVeclocityBeforeJump && canJump);
+    bool CanJump(float xVeclocityBeforeJump = 3) => (!isDigging && !isRolling && isAbove.Seeing.Count > 0 && rb.linearVelocityX < xVeclocityBeforeJump && canJump);
 
     void Jump()
     {
@@ -147,6 +148,7 @@ public class BossAI : MonoBehaviour
 
         void SetState(bool state)
         {
+            Los.enabled = !state;
             rb.simulated = !state;
             Hitbox.enabled = !state;
             ani.SetBool("Dig", state);

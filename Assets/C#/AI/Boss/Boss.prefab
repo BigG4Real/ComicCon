@@ -736,7 +736,7 @@ MonoBehaviour:
   Fov: 360
   BlockLayer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 64
   Seeing: []
   SeeingTimeAmount: 99999
 --- !u!1 &7372516385528810516
@@ -1166,6 +1166,7 @@ MonoBehaviour:
   - {fileID: 3159461843916486066}
   - {fileID: 7804458704815747575}
   - {fileID: 3589629473466596486}
+  MinusTime: 0
 --- !u!114 &1381429290718726965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1196,6 +1197,7 @@ MonoBehaviour:
   ai: {fileID: 8306236430826920998}
   rb: {fileID: 4270627454243869608}
   Hitbox: {fileID: 7590701969731221031}
+  Los: {fileID: 3602158243805974483}
   hitbox: {fileID: 1381429290718726965}
   SizeOfEneamy: {x: 2, y: 1.25}
   TimeBeforeRoll: 0.75

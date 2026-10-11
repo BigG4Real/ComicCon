@@ -2550,9 +2550,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4013b1d660423ed409a38402f8dce275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSword
-  attackHitBoxSize: {x: 1.15, y: 0.9}
+  attackHitBoxSize: {x: 1.495, y: 1.521}
   attackHitBoxOffset: {x: 1.08, y: 0}
-  attackHitBoxSizePogo: {x: 1.45, y: 1.4}
+  attackHitBoxSizePogo: {x: 1.885, y: 1.82}
   attackHitBoxOffsetPogo: {x: 0, y: -1}
   pogoBoost: 13
   attackHitBoxOffsetUpSlash: {x: 0, y: 1.2}
@@ -2580,7 +2580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LaserAbility
   player: {fileID: 8856688836659063887}
   essence: {fileID: 4447765588372642704}
-  hitBoxSize: {x: 40, y: 0.5}
+  hitBoxSize: {x: 40, y: 1}
   offSet: {x: 20, y: 0}
   dmgAmount: 30
   HitboxApperTime: 0.1
